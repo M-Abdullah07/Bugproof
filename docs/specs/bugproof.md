@@ -225,6 +225,15 @@ provider IDs and verify the issue/commented content or sent-message identity
 afterward. Repeated approvals and retries reconcile completed actions rather
 than repeat them. Retry only unfinished actions whose approval is still valid.
 
+Use a unique durable action identity and a short SQLite transaction to claim
+exclusive ownership before an external call. Commit the claim before making
+network requests; never hold the SQLite write transaction across provider I/O.
+Competing requests observe the existing attempt instead of issuing another call.
+Timeouts and interrupted ownership require reconciliation before another send;
+expiry of an ownership claim alone is not evidence that the provider did nothing.
+Recheck approval and case revision at the claim boundary. This mechanism does
+not claim to make the local transaction atomic with the external provider.
+
 A network timeout can follow a successful remote write. Reconcile with a stable
 issue marker or sent-message identity before retrying. If the connector cannot
 establish whether a send occurred, mark the action uncertain and require manual
@@ -337,3 +346,376 @@ evidence-to-action execution is the proposed creative contribution (15); fastn
 intake, execution and verified follow-through support automation depth (15);
 one clear case view and a complete short demo support UX/presentation (10).
 These are design intentions, not awarded scores or validated market impact.
+
+## Engineering review — October 16, 2026
+
+Target and report destination: `docs/specs/bugproof.md`.
+Context: `docs/designs/bugproof.md` and `GLOSSARY.md`.
+Finding/question line citations below refer to the pre-review specification at
+commit 544a08f; approved additions above shift current line numbers.
+This appended review preserves the specification above. Pending proposals do
+not amend its contract. Implementation remains HELD.
+
+### Scope Challenge
+
+Feature answers: retain the previously approved complete workflow; no cuts proposed.
+Structure: D1, user selected "Original arrangement (Recommended) — retain the
+five responsibility boundaries and isolated lab target; physical file layout
+remains flexible. Small module overhead, clearer authority and recovery
+ownership; implementation stays paused."
+Accepted scope: five responsibility boundaries and isolated lab target, without
+requiring separate deployments or a fixed file count.
+Pending remedies at the D1 answer: none.
+Result: scope accepted as-is. Mode: FULL_REVIEW.
+
+Existing solutions: FastAPI supplies HTTP routing and server-rendered integration;
+SQLite supplies transactions and uniqueness constraints. fastn is the approved
+provider boundary. No first-party application, tests or deployment exists.
+The local tools serve development only and do not implement the product.
+Minimum work: the approved intake, actual experiment, human review, exact-action
+approval, verified issue/reply and recovery path. Scheduled polling remains
+optional; no additional queues, agent personas, analytics or automatic fixes.
+Complexity: two logical services (application and lab target); five application
+responsibilities. Proposed physical file/class counts are unspecified, not measured.
+History: initial documentation/tooling commit 544a08f; no prior implementation
+or reverts for the named specification/design paths. No TODOS.md exists.
+Distribution: later deployment on Alternate Clouds and persistent storage remain
+unverified gates. This review does not perform account or deployment changes.
+Scope findings: no new scope changes needed. Dispositions: retain prior approvals.
+
+Research before building: prefer standard SQLite transactions and constraints
+[Layer 1], not a new broker. SQLite permits a single writer at a time; an external
+HTTP call should not hold that write transaction open. Claim briefly, commit,
+then call the provider and record/reconcile the result.
+Sources: https://www.sqlite.org/isolation.html and
+https://www.sqlite.org/conflict.html. FastAPI worker processes have separate
+memory: https://fastapi.tiangolo.com/deployment/concepts/.
+These sources support the mechanism, not a claim that BugProof implements it.
+
+### Architecture review — in progress
+
+F1 [P1] (confidence: 8/10), reviewer: primary agent.
+`docs/specs/bugproof.md:223–226`: "Persist each action intent and stable identifier
+before its network call" and "Repeated approvals and retries reconcile completed
+actions rather than repeat them."
+`docs/specs/bugproof.md:283`: "Retry and concurrent submission" requires stable
+identities to prevent duplicate completed issues/replies.
+Plan gap: durable identity and post-call reconciliation alone do not explain
+who owns an action while its first provider call is still in flight. Two
+requests can both observe no completed result and send concurrently. This is a
+planning ambiguity, not an observed application bug. The previously approved
+concurrency guarantee stands; only its coordination mechanism is being selected.
+
+## Decision ledger
+
+### R1: Publication ownership mechanism
+
+Finding: F1, P1, confidence 8/10; primary agent; specification lines 223–226, 283.
+Plan baseline: stable action identities, concurrency-safe publication and
+restart reconciliation are approved in the assembled MVP and testing boundary.
+No action-ownership mechanism has been selected. Implementation is paused.
+Runtime evidence: unknown; no application or provider calls exist.
+
+| Choice | Current | A | B |
+| --- | --- | --- | --- |
+| R1 mechanism | Unspecified | Durable SQLite claim per action | Leave mechanism to implementation, require proof before publishing |
+| Duplicate prevention | Approved | Preserved | Preserved |
+| Unknown send result | Manual reconciliation, no blind resend | Preserved | Preserved |
+| Recovery | Persist and reconcile | Preserved | Preserved |
+| Feature boundaries | D1 original arrangement | Preserved | Preserved |
+| Execution permission | HELD | HELD | HELD |
+
+Question D2:
+D2 — Prevent two simultaneous sends.
+Project/branch/task: BugProof, main, architecture review of docs/specs/bugproof.md.
+ELI10: Two clicks can start the same email before either request records success.
+The spec already requires preventing duplicates, but has not chosen who owns a
+send while it is running. This selects that mechanism, not a new feature.
+Stakes if we pick wrong: duplicate customer replies or engineering issues despite
+valid human approval (spec lines 223–226, 283).
+Recommendation: A because SQLite already provides the durable coordination we
+need without another service. A short transaction claims the action; the provider
+call happens after commit. Restart or timeout reconciles the existing attempt
+before any new claim can send again.
+Note: options differ in kind, not coverage — no completeness score.
+Net: specify the small coordination mechanism now, or leave it open while
+retaining the same mandatory concurrency and recovery proof. Neither resumes implementation.
+Header: Send ownership
+Options:
+A) SQLite claim (Recommended)
+✅ Uses the existing database without adding a queue service.
+✅ Gives simultaneous requests one durable action owner.
+❌ Adds transactional state handling and concurrency tests.
+Effort: estimated 1–2 human engineering hours or 20–40 agent minutes once implementation resumes; not a delivery promise.
+B) Decide during build
+✅ Keeps the approved duplicate-prevention contract intact.
+✅ Allows the builder to choose an equally proven mechanism.
+❌ Leaves a critical architecture detail and its effort unresolved.
+Effort: no design change now; implementation must still prove exclusive ownership, timeout reconciliation and restart recovery before live publishing.
+
+State: approved
+Actual answer: D2 user reply, "recommended option but keep in mind we need to
+make sure we optimize for the hackathon and winning it and winning it
+effectively/comprehensively."
+Accepted scope: SQLite durable action ownership, short claim transaction,
+provider call after commit, and reconciliation before retry after timeout or
+restart. Preserve every existing feature and the implementation hold. Optimize
+execution for a complete, demonstrable hackathon workflow; no additional scope.
+History: none.
+
+Approval readiness: PASS. D1 retains the approved structure; D2 approves R1.
+No other new remedy or product policy is accepted by this review.
+
+## Engineering review findings and execution plan
+
+### Architecture review — complete
+
+One issue: F1, publication ownership ambiguity. Disposition: accepted under D2;
+the publication contract now specifies a durable exclusive claim and
+reconciliation. Claim expiry never authorizes a blind resend. This is planned
+behavior; implementation and verification remain outstanding.
+
+Data/authority boundaries survive review: the LLM proposes; the runner validates
+and executes within the registered contract; the human chooses and approves;
+only the publisher can access configured external destinations. Source excerpts
+and captured API observations remain separate. Provider text cannot grant authority.
+SQLite transactions coordinate local state, not atomic delivery across providers.
+Deployment durability, credentials and connector capabilities remain build gates.
+
+### Code quality review — complete
+
+No additional issues found in the proposed module organization. There is no
+application code to audit, and generated/third-party skills are not first-party
+callers. No shared helper extraction is justified. Use five responsibility
+boundaries from D1 and keep physical files flexible. Explicitly represent action
+states and outcomes rather than scattering boolean success flags. That is an
+implementation expression of the existing visible partial/uncertain-state contract.
+Dispositions: retain approved boundaries; no new abstraction or remedy proposed.
+
+### Test review — complete
+
+No application test framework or test suite exists. The API-level boundary,
+actual lab service, controlled provider responses and separate live smoke are
+already approved; this review installs nothing and chooses no new framework.
+All paths below are PLANNED, currently untested. No coverage percentage is claimed.
+
+```text
+PROPOSED EXECUTION                                  OPERATOR FLOW / PROOF
+Authenticated Check inbox                          [GAP -> E2E] empty/inbox/recheck
+  -> fastn read -> source validation + identity
+     | failure -> visible intake error, no case loss
+     | same inbound snapshot -> reuse case
+     | new inbound -> revision++, invalidate approval
+     ` own outbound -> ignore
+  -> grounded structured interpretation             [GAP -> EVAL] valid/paraphrase
+     | malformed -> one correction -> visible error
+     | missing -> clarification review              [GAP -> E2E] missing facts
+     | unsupported -> unsupported review
+     ` supported -> validate target/fixture/limits
+        | rejected -> explicit runner error
+        ` actual HTTP lab -> immutable evidence     [GAP -> E2E] faulty/corrected
+           | timeout/truncation -> qualified error
+           ` complete -> assertion + observed build
+  -> human review / editable expectation             [GAP -> E2E] edit/reject
+     | expectation edit -> reevaluate + invalidate
+     | plan/target edit -> fresh run + invalidate
+     ` disposition -> exact previews -> approval
+        | invalid/stale/expired/cross-case -> no write
+        ` SQLite claim -> one action owner          [GAP -> E2E] simultaneous clicks
+           | already completed -> reconcile/reuse
+           | in flight/uncertain -> no second send
+           ` escalate -> issue -> read-back -> reply
+              | issue fails -> visible failure, no reply
+              | reply fails -> keep issue, reply pending
+              | source changes -> stop remaining writes
+              | timeout -> reconcile or manual uncertainty
+              ` verified effects -> complete        [GAP -> LIVE] actual accounts
+Clarify/qualified disposition -> approved reply only
+Restart -> durable attempts -> reconcile; interrupted run gets new fixture
+```
+
+The expanded flow covers all 16 acceptance rows in Testing Decisions. Their
+implementation is absent; these are required proofs, not green tests. Extend the
+existing concurrency row with two requests reaching the ownership boundary
+together, plus a process stop after claim/provider success but before completion
+is saved. Assert one provider call, or uncertainty requiring reconciliation;
+never treat elapsed claim time as permission to send again. These assertions
+prove the already approved duplicate/restart contract and D2 mechanism.
+
+Proposed test organization, not fixed public API or required file layout:
+`tests/test_case_workflow.py` for intake, proposal, lab and review;
+`tests/test_publication.py` for authorization, concurrency, timeout and restart;
+`tests/test_live_smoke.py` for separately enabled real connections. No obsolete
+tests exist. The QA artifact carries observable assertions and value cards.
+Browser rehearsal covers the same operator flow, including refresh/navigation
+during a run, simultaneous submissions, expired session and visible recovery.
+No separate browser automation suite is imposed by this review.
+Dispositions: required proof of prior approved contracts plus D2; no new test scope.
+
+### Performance review — complete
+
+No additional blocking issue found for the bounded demonstration workload.
+The existing eight-request, 30-second, body/capture limits bound experiments;
+actual LLM/provider latency and input volumes are unknown. Record measured
+end-to-end rehearsal timing; the runner budget is not a whole-workflow SLA.
+Avoid network I/O inside SQLite write transactions under D2. Case/action
+identity uniqueness is required by approved idempotence; do not add a cache or
+broker before measuring a demonstrated bottleneck. Inbox pagination and provider
+limits must follow the real connector capability, presently unverified.
+Dispositions: no new performance guarantee or numerical limit proposed.
+
+### Premises and reality checks
+
+| Premise | Receipt | Verdict |
+| --- | --- | --- |
+| Scope and meaningful human control approved | D1, D2 and specification Approval and publication contract | Confirmed participant decisions |
+| No application implemented | Git tree at 544a08f, tooling/docs only | Verified locally |
+| fastn can perform required account actions and reconciliation | specification:105–108, 228–232 at 544a08f | Unverified |
+| Alternate Clouds provides usable durable storage | specification:251–255 at 544a08f | Unverified |
+| Model credentials and controlled Gmail accounts are ready | specification dependency gates, Further Notes | Unverified |
+| Specific buyer demand/time savings | specification:21–22 at 544a08f | Unverified |
+
+unverified=4. These are explicit future gates/limits, not assumed successes.
+
+REALITY: premise-table pass Four unverified premises are explicit docs/specs/bugproof.md:318
+REALITY: already-done pass Initial tree contains documents/tooling, no repeated application implementation 544a08f
+REALITY: surface-check finding Future fastn and hosting surfaces are not verified; no app routes exist docs/specs/bugproof.md:105
+REALITY: binding-decisions pass D1 and D2 preserve the execution hold and authority boundary docs/specs/bugproof.md:407
+REALITY: numbers pass Runner and approval numbers are participant-approved design defaults, not measured performance docs/specs/bugproof.md:160
+REALITY: deferred-asks pass No approved product feature cut; public spec issue still awaits approval docs/specs/bugproof.md:318
+REALITY: pr-count pass No split proposed; one MVP and no implementation PR created by this review docs/specs/bugproof.md:350
+REALITY: prior-art pass Adopt standard SQLite transactions and constraints; no patched runtime dependency proposed docs/specs/bugproof.md:385
+REALITY: transaction-semantics pass D2 claims briefly; no provider I/O while holding a write transaction docs/specs/bugproof.md:228
+REALITY: contract-assumptions finding fastn read/send/reconcile and persistent hosting remain unverified build gates docs/specs/bugproof.md:105
+REALITY: dependency-fallback pass With missing integration or storage capability, stop and revise; never substitute simulated completion docs/specs/bugproof.md:318
+REALITY: obligation-tiers pass Must complete approved workflow and evidence; polling and analytics remain outside critical build docs/specs/bugproof.md:110
+
+### What already exists
+
+Reuse the specification, glossary, approved design, local tools and GitHub project
+configuration. There is no existing application, lab service, first-party test
+suite or deployment. Reuse FastAPI, SQLite and fastn; do not invent substitutes.
+The currently configured project issue tracker is separate from the future
+controlled repository where BugProof publishes demonstration escalations.
+
+### NOT in scope
+
+Keep the existing Out of Scope list. No automatic fixes, production access,
+payments, generic browser runner, extra queue or dashboard. Scheduled polling
+is optional and may not delay the complete workflow. Commercial validation is
+not established by a synthetic demonstration. Additional review skills and
+independent agents are not authorized by this invocation.
+
+### Failure modes and proof
+
+| Path | Realistic failure | Required visible behavior and proof |
+| --- | --- | --- |
+| Intake | Credential failure or duplicate import | Visible error or one case; intake acceptance row |
+| Interpretation | Invented facts or malformed output | Reject ungrounded plan, bounded correction; proposal acceptance rows |
+| Execution | Wrong fixture, timeout or oversized trace | Explicit error, no unsupported assertion; isolation/limits rows |
+| Review | Stale tab, altered payload or changed source | Zero unauthorized effects; approval and editing rows |
+| GitHub | Write succeeds before timeout | Reconcile marker/ID or show uncertainty; no duplicate issue |
+| Gmail | Issue succeeds, reply fails | Keep issue URL; resume only eligible reply; partial publication row |
+| Concurrency | Two approved submits race | One durable owner/provider attempt; D2 and concurrency row |
+| Restart | Stop between remote write and local completion | Reconcile existing attempt; no blind resend; restart row |
+| Hosting | Lost SQLite volume | Durability gate fails visibly; no recovery claim before verification |
+
+Critical gaps with both no handling and no planned test: zero. All proof is
+future work; this is not a reliability certification.
+
+### Hackathon execution order — only after explicit resume
+
+| Step | Modules touched | Depends on | Review/acceptance purpose |
+| --- | --- | --- | --- |
+| 1. Verify dependency surfaces and deploy skeleton | fastn adapter, configuration, persistence, hosting | Explicit resume | Existing feasibility gates; fail early on blocked credentials/storage |
+| 2. Prove HTTP evidence | runner/lab, persistence | Step 1 | Faulty build yields two orders; corrected build one |
+| 3. Close one full escalation | case workflow, AI proposals, review, publisher | Steps 1–2 | Gmail report to approved issue and verified thread reply |
+| 4. Prove judgment and recovery | same workflow and publisher | Step 3 | Incomplete report, expectation correction, no-send rejection, partial failure, D2 race/restart |
+| 5. Rehearse and prepare submission | workspace, deployed integration, participant artifacts | Step 4 | Measured short demo, login, evidence, video and PDF before freeze |
+
+Sequential implementation, no parallelization opportunity for autonomous agents
+under the user's no-delegation instruction. No worktrees or agents launched.
+Two human teammates may divide independent lab and provider-verification work
+after agreeing shared contracts; this review does not assign them work.
+The authority/state boundary is shared: sequence changes there to avoid conflict.
+One primary automated lane; other parallel lanes are not scheduled.
+
+Demo spine: one inbox report -> actual duplicate-order trace -> human adjusts or
+approves disposition -> issue + reply read-back. Briefly show corrected-version
+replay and missing-information clarification. Show one recoverable partial
+failure in rehearsal/video if time permits; the required adverse-case tests remain.
+Preserve time for Alternate Clouds rebuilds, the 2–3 minute video and submission
+PDF. Claim measured behavior and limits, not guaranteed judging scores or adoption.
+
+## Implementation Tasks
+
+All execution remains HELD. This list contains review-derived work only; the
+execution table above orders the already approved MVP rather than expanding it.
+
+- [ ] T1 (P1) — publisher/persistence — Implement D2 exclusive action claims.
+  - Surfaced by: architecture F1, missing ownership during in-flight publication.
+  - Proposed paths: publication/persistence modules; `tests/test_publication.py`.
+  - Verify: concurrent approvals, success-before-timeout, interrupted claim and
+    post-provider restart produce one write or explicit uncertainty, never blind resend.
+  - Effort: estimated 1–2 human engineering hours or 20–40 agent minutes, excluding
+    credentials/provider delays; same uncertain estimate as D2, not measured.
+  - Depends on: verified connector reconciliation and durable storage, plus resume.
+
+No new tasks from Code Quality, Test or Performance beyond required proof of T1
+and the existing specification. No new TODO proposals; TODOS.md is not created.
+
+### Outside Voice
+
+Unavailable: AGENTS.md explicitly prohibits subagents without direct user
+authorization. No independent reviewer or external review CLI was launched.
+This review has one primary reviewer and claims no cross-model confirmation.
+The missing outside coverage is non-blocking under the skill's unavailable route.
+
+### Suppressed findings
+
+Input volume, connector quotas and provider latency remain unmeasured. They are
+rehearsal/capability unknowns; there is insufficient evidence for an additional
+numeric resource policy or performance defect. No invented benchmark is reported.
+
+### Completion summary
+
+- Scope Challenge: scope accepted as-is (D1), FULL_REVIEW.
+- Reality rows: `PLAN_REALITY: phase=eng rows=12/12 missing=none verdict=complete`;
+  4 unverified premises, documented as capability/market gates rather than facts.
+- Architecture: 1 issue, F1 accepted via D2; implementation proof outstanding.
+- Code Quality: 0 additional issues.
+- Tests: proposed flow diagram and 16 acceptance rows mapped; all currently unimplemented.
+  One ownership proof elaboration belongs to F1; no separate uncovered approved contract found.
+- Performance: 0 additional demonstrated issues; actual latency remains unknown.
+- NOT in scope, existing solutions and failure modes: written.
+- TODOS.md: 0 new proposals. Critical silent/unhandled/unplanned-test gaps: 0.
+- Unresolved engineering decisions: 0. Feasibility gates are unverified work, not approvals.
+- Outside voice: unavailable, no delegation authorization; no independent coverage.
+- Parallelization: one sequential automated lane, no agents launched.
+- Lake Score: N/A; D1/D2 compare arrangements/mechanisms, not coverage cuts.
+- Navigation: existing implementation hold remains binding; no new skill or build launched.
+- QA artifact saved and read back at
+  `.tools/gstack-state/projects/M-Abdullah07-Bugproof/1122admin1-main-eng-review-test-plan-20261016-154016.md`.
+  It is local tool state and excluded from Git; the specification's acceptance
+  table and this review preserve the tracked test requirements.
+- Task JSONL aggregation: NOT PERSISTED because jq is unavailable. T1 above is
+  the complete task output; install/configure aggregation separately if needed.
+  No application dependency was installed to satisfy review tooling.
+- Dashboard: Eng ISSUES OPEN (1 accepted task, no unresolved decision); outside
+  unavailable; CEO, Design and DX not run. This is a plan review, not runtime clearance.
+
+## GSTACK REVIEW REPORT
+
+| Review | Trigger | Why | Runs | Status | Findings |
+| --- | --- | --- | --- | --- | --- |
+| CEO Review | Not run here | Product strategy | 0 | Not evaluated | Earlier design is context, not a logged CEO clearance |
+| Outside Review | No authorized delegation | Independent opinion | 0 | Unavailable | No outside coverage |
+| Eng Review | /plan-eng-review | Architecture and tests | 1 | ISSUES OPEN | 1 accepted architecture issue; proof outstanding |
+| Design Review | Not run here | UI/UX | 0 | Not evaluated | No application/UI exists |
+| DX Review | Not run here | Developer experience | 0 | Not evaluated | No application exists |
+
+**OUTSIDE COVERAGE:** unavailable; one primary reviewer only.
+**VERDICT:** plan review complete with one accepted implementation task; eng review
+required before claiming runtime clearance. Implementation remains HELD and live
+connector/storage feasibility is unverified. Review log persistence is verified separately.
+NO UNRESOLVED DECISIONS
