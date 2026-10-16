@@ -1,0 +1,126 @@
+[
+  {
+    "name": "ask-matt",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "code-review",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "codebase-design",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "diagnosing-bugs",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "domain-modeling",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "grill-with-docs",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "implement",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "implement-spec",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "improve-codebase-architecture",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "pr",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "prototype",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "research",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "retro",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "setup-matt-pocock-skills",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "tdd",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "to-spec",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "to-tickets",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "triage",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "wayfinder",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "wizard",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "grill-me",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "grilling",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "handoff",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "teach",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "to-questionnaire",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "wait-what",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "writing-for-agents",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "git-guardrails-claude-code",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "migrate-to-shoehorn",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "scaffold-exercises",
+    "matchesSourceIgnoringLineEndings": true
+  },
+  {
+    "name": "setup-pre-commit",
+    "matchesSourceIgnoringLineEndings": true
+  }
+]

@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-qa"
+  short_description: "Fix browser/API/CLI/job/worker/webhook bugs. Commit verified fixes atomically. Use when asked to \"qa\", \"QA\", \"test..."
+  default_prompt: "Use gstack-qa for this task."
+policy:
+  allow_implicit_invocation: true

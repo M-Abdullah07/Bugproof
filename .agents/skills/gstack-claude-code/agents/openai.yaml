@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-claude-code"
+  short_description: "Claude Code CLI second opinion for non-Claude Code hosts. Review a diff, challenge a change for failure modes, or..."
+  default_prompt: "Use gstack-claude-code for this task."
+policy:
+  allow_implicit_invocation: true

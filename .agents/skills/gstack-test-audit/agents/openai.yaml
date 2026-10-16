@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-test-audit"
+  short_description: "Find low-value or duplicate tests and the test-only code they keep alive. Report-only unless you approve a batch...."
+  default_prompt: "Use gstack-test-audit for this task."
+policy:
+  allow_implicit_invocation: true

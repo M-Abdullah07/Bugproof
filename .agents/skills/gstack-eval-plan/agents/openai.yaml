@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-eval-plan"
+  short_description: "Preregister a paid eval (bars, arms, decoys, stop rules), dry-run it at zero cost, then run a three-item priced..."
+  default_prompt: "Use gstack-eval-plan for this task."
+policy:
+  allow_implicit_invocation: true

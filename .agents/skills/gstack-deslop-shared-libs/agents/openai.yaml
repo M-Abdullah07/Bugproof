@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-deslop-shared-libs"
+  short_description: "Find worthwhile shared-code extractions in recent work. Use for /deslop-shared-libs, $deslop-shared-libs, or..."
+  default_prompt: "Use gstack-deslop-shared-libs for this task."
+policy:
+  allow_implicit_invocation: true
