@@ -7,11 +7,26 @@ documentation only until they directly resume development. No application code
 or deployment exists. Organizer development permission is confirmed; retain fastn
 MCP centrally while its event requirement remains unclear.
 
-For specification, implementation planning, or acceptance review, read
-`docs/specs/bugproof.md`. Use `GLOSSARY.md` for domain terms. The specification is
-the implementation contract; earlier candidate/research documents are historical.
+For exact behavior or scope changes, read `docs/specs/bugproof.md` (implementation
+contract). Earlier candidate/research documents are historical.
 GitHub Issues is configured; the participant chose to leave the specification
 unpublished as an issue. Keep it in the repository unless directly instructed otherwise.
+
+## Task navigation and evidence
+
+- Before changing a decision or reopening a tradeoff, read `Decisions.md`.
+- Before implementation planning or editing source boundaries, read `Architecture.md`.
+  Its source/test paths are planned until code exists; create no placeholder modules during the hold.
+- Before tests, acceptance claims or verification work, read `ACCEPTANCE.md`.
+  Update affected IDs with actual replay commands, commit/build identity and observed evidence;
+  mark prior evidence stale after relevant changes. Never treat a provider double as live proof.
+- Before demo, pitch or submission work, read `docs/judge_scorecard.md`.
+- For domain terms, read `GLOSSARY.md`. For startup/run/test commands, use `README.md`
+  and actual manifests; no application commands exist yet.
+- Search first-party paths first: `rg --files docs scripts` and the named root documents.
+  Once source exists, target `src/` and `tests/`; reach `.agents/skills` only for a selected skill.
+- End each change with matching docs/evidence updates and a concise statement of
+  what was verified versus what remains unknown. Keep module dependencies one-way.
 
 ## Local skills and tools
 
