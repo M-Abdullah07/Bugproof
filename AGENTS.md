@@ -10,7 +10,8 @@ MCP centrally while its event requirement remains unclear.
 For specification, implementation planning, or acceptance review, read
 `docs/specs/bugproof.md`. Use `GLOSSARY.md` for domain terms. The specification is
 the implementation contract; earlier candidate/research documents are historical.
-GitHub Issues is configured; specification issue publication remains pending.
+GitHub Issues is configured; the participant chose to leave the specification
+unpublished as an issue. Keep it in the repository unless directly instructed otherwise.
 
 ## Local skills and tools
 

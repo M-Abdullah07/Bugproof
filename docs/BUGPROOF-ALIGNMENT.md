@@ -32,7 +32,7 @@ The implementation contract is `docs/specs/bugproof.md`.
 The participant approved the assembled scope and the main API-level testing seam,
 then explicitly held implementation. Documentation synthesis only is authorized.
 GitHub Issues and origin are configured for M-Abdullah07/Bugproof; specification
-issue publication remains pending explicit approval following automatic review.
+issue publication was explicitly declined by the participant; keep the spec in Git.
 Provider/account and deployment feasibility checks remain future build gates.
 
 ## Evaluation discipline

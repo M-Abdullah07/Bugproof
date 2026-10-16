@@ -2,7 +2,7 @@
 
 Scope: approved by the participant. Testing boundary: approved.
 Execution: **HELD — documentation only until the participant explicitly resumes implementation.**
-Tracker: GitHub Issues, M-Abdullah07/Bugproof. Issue publication pending. Intended issue label:
+Tracker: GitHub Issues, M-Abdullah07/Bugproof. Participant chose no spec issue. Future issue label if requested:
 `ready-for-agent`; that label never overrides the execution hold.
 Date: October 16, 2026, Asia/Karachi.
 
@@ -321,8 +321,9 @@ Implementation remains explicitly held despite approved scope and the intended
 tracker label. Resume only on a direct participant instruction. The repository
 currently contains tooling and documents, not application code or tests. Git
 origin and GitHub Issues are configured for M-Abdullah07/Bugproof. Public issue
-publication remains pending explicit approval following an automatic approval
-review rejection; local creation is not claimed as remote issue publication.
+publication was explicitly declined after an automatic approval review rejection.
+Keep the specification in Git; create no issue unless the participant changes
+that decision. No remote specification issue exists.
 
 Dependency gates for a future authorized build: fastn/Gmail/GitHub actions and
 reconciliation capability; model key/provider; Alternate Clouds deployment and
@@ -582,7 +583,7 @@ REALITY: already-done pass Initial tree contains documents/tooling, no repeated 
 REALITY: surface-check finding Future fastn and hosting surfaces are not verified; no app routes exist docs/specs/bugproof.md:105
 REALITY: binding-decisions pass D1 and D2 preserve the execution hold and authority boundary docs/specs/bugproof.md:407
 REALITY: numbers pass Runner and approval numbers are participant-approved design defaults, not measured performance docs/specs/bugproof.md:160
-REALITY: deferred-asks pass No approved product feature cut; public spec issue still awaits approval docs/specs/bugproof.md:318
+REALITY: deferred-asks pass No approved product feature cut; participant chose no public specification issue docs/specs/bugproof.md:318
 REALITY: pr-count pass No split proposed; one MVP and no implementation PR created by this review docs/specs/bugproof.md:350
 REALITY: prior-art pass Adopt standard SQLite transactions and constraints; no patched runtime dependency proposed docs/specs/bugproof.md:385
 REALITY: transaction-semantics pass D2 claims briefly; no provider I/O while holding a write transaction docs/specs/bugproof.md:228

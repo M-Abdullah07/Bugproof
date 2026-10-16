@@ -9,11 +9,11 @@ Git Credential Manager is the verified fallback. Keep credentials in memory;
 never place tokens in documents, command output or committed scripts.
 
 "Publish a spec" means create or update a GitHub issue, checking for duplicates
-first. The canonical BugProof spec is `docs/specs/bugproof.md`; its issue has not
-been published. Automatic approval review rejected the attempted public issue
-publication because explicit approval of that specific publication was missing.
-Obtain that approval before retrying. The user separately authorized committing
-and pushing local project files to origin main.
+first. The canonical BugProof spec is `docs/specs/bugproof.md`. Following an
+automatic approval rejection, the participant explicitly selected "Leave
+unpublished (Recommended)" on October 16, 2026. No specification issue exists;
+keep it unpublished unless the participant directly changes that decision.
+The user separately authorized committing and pushing project files to origin main.
 
 PRs as a request surface: **no**.
 Labels are defined in `docs/agents/triage-labels.md`.
