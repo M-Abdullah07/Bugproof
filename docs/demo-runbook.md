@@ -33,10 +33,10 @@ production payment incident or an automatic code fix.
 - 2:15–2:45: show corrected replay yields one order and incomplete reports require
   clarification. State the controlled-lab limit and mandatory Alternate Clouds hosting.
 
-Existing cloud cases: retry `1087433b26574b69b73ec8e6cafb83d1` already completed
-[issue #2](https://github.com/M-Abdullah07/Bugproof/issues/2); missing-information
-`3fea0da6b3f241229e603c9597137675` already sent clarification; paraphrase
-`1869e9ee48c545b7a938c706828fb99a` has a corrected one-order run awaiting review.
+Existing cloud cases: retry `963d31a56ba9462eb13bba3a5cc8d428` already completed
+[issue #3](https://github.com/M-Abdullah07/Bugproof/issues/3); missing-information
+`5d95ede2dde043c2bf4ed83767f48939` already sent clarification; paraphrase
+`cd5024185ed8488687c70eb057f8fdb3` has a corrected one-order run awaiting review.
 Use that paraphrase case for a fresh human-controlled escalation after replaying
 the faulty build. If reusing a completed case, explain its existing issue rather
 than presenting a reused action as a new send. Keep all writes in controlled accounts.
@@ -63,3 +63,11 @@ Stop code/deployment changes at cutoff and keep the service running until closin
 - Do not delete/recreate the live service or its persistent volume during judging.
 - Health is `/healthz`. Provider outages/quota remain possible; show errors honestly.
 - 36 tests and hosted process restart passed; physical provider migration was not tested.
+
+Latest UI/live proof: [UI record](evidence/20261017-ui.md). Full redeployment
+migrated providers and reset cases; Gmail intake restored them with new IDs above.
+Keep this active deployment running; only container-process restart durability
+was proved. Pending redundant provider jobs require support attention.
+
+For recording, open a fresh Incognito window or hard-refresh if the old green
+stylesheet appears. The new design has a navy header, lime b. mark and blue controls.

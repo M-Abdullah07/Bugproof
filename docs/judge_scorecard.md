@@ -2,9 +2,9 @@
 
 Rubric and event constraints below were supplied by the participants; they are
 not independently reconfirmed here. Total: **100 points**. No score is awarded
-or predicted. Current controlled-MVP evidence: A01–A17 PASS at their stated boundaries,
-including actual Alternate Clouds workflow and hosted process restart. Submission
-artifacts are separate; demand/time savings remain unvalidated.
+or predicted. Current controlled-MVP proof includes A01–A17 at their stated boundaries, with
+latest live UI and workflow reverified. Container restart passed; provider migration
+lost local case state. Submission artifacts and commercial validation are separate.
 Use [ACCEPTANCE.md](../ACCEPTANCE.md) for current results and runnable evidence,
 not a second copy of the pass/fail ledger.
 

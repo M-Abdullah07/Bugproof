@@ -75,3 +75,10 @@ unpublished as an issue. Keep it in the repository unless directly instructed ot
 - Keep one active OAuth writer. Stop local app/probes before exporting the latest
   private OAuth state to cloud; preserve rotated cloud tokens on `/data`.
 - Read-only reconciliation after expiry/revision never authorizes resend.
+
+## Final UI deployment constraints
+
+Image 5512198 serves the refreshed templates/styles. Read docs/evidence/20261017-ui.md
+for real replay IDs, recovery and cached-style concerns. Container restart passed;
+full redeployment migrated providers and reset cases. Preserve the serving deployment
+and SQLite during judging; do not infer cross-provider durability.

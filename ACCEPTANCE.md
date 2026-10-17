@@ -1,9 +1,11 @@
 # BugProof acceptance and evidence
 
-**Controlled MVP verdict: PASS on Alternate Clouds.** There are 36 passing tests,
-real Gemini/fastn escalation and clarification, corrected replay, OAuth refresh,
-and hosted container restart proof. See the [deployment record](docs/evidence/20261017-deployment.md).
-Physical provider reboot/migration and commercial demand remain unverified.
+**Controlled MVP verdict: PASS on the refreshed Alternate Clouds deployment.**
+36 tests passed; real escalation, clarification, corrected replay and browser human
+editing/rejection were reverified on image `5512198`. See [UI/live evidence](docs/evidence/20261017-ui.md).
+Container restart proof remains valid; full redeployment migrated providers and
+lost local case state. Cross-provider durability is not established; duplicate
+protection depends on retaining SQLite. Commercial demand remains unvalidated.
 The [specification](docs/specs/bugproof.md) defines behavior; evidence below records
 what ran and its limits. Local browser rehearsal is not commercial user validation.
 
@@ -48,8 +50,8 @@ provider failure tests are distinct from the separately recorded real cloud smok
 | A13 | Successful issue survives email failure; retry only unfinished eligible reply, preserve issue/link, declare complete only after both verified | Publication tests | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
 | A14 | Imported new source evidence invalidates stale approval; between issue and reply it preserves issue and stops remaining writes | Publication tests with controlled timing | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
 | A15 | Restart preserves completed provider IDs; ambiguous attempts reconcile, claim expiry never permits blind resend; interrupted experiments get fresh run/fixture | Actual hosted container restart + deterministic failure tests; physical host reboot excluded | PASS | [Hosted restart](docs/evidence/20261017-deployment.md); [adverse cases](docs/evidence/20261017-workflow.md) |
-| A16 | On Alternate Clouds, real fastn intake -> human-approved GitHub create/read-back -> original-thread Gmail reply/read-back works in owned accounts | Separately enabled deployed live smoke; scripted preauthorized approval | PASS | [Deployed escalation, clarification and corrected replay](docs/evidence/20261017-deployment.md) |
-| A17 | Operator can inspect source/evidence, edit expectation, reject/approve and recover visibly without reading raw JSON; refresh/reopen retains state | Browser + API; refreshed UI deployment check pending | STALE | [Earlier browser rehearsal](docs/evidence/20261017-workflow.md); [UI refresh verification](docs/evidence/20261017-ui.md) |
+| A16 | On Alternate Clouds, real fastn intake -> human-approved GitHub create/read-back -> original-thread Gmail reply/read-back works in owned accounts | Deployed real smoke reverified on UI image 5512198 | PASS | [Latest deployed replay](docs/evidence/20261017-ui.md); [earlier deployment](docs/evidence/20261017-deployment.md) |
+| A17 | Operator can inspect source/evidence, edit expectation, reject/approve and recover visibly without reading raw JSON; refresh/reopen retains state | Browser + API; refreshed deployed edit/save/reject checked | PASS | [Earlier browser rehearsal](docs/evidence/20261017-workflow.md); [UI refresh verification](docs/evidence/20261017-ui.md) |
 
 A01–A16 correspond in order to the specification's acceptance table. A17 makes
 its existing workspace contract directly reviewable; it adds no new feature.

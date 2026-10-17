@@ -120,3 +120,8 @@ ambiguous attempts remain uncertain if bounded lookup finds no match.
 The lab router shares the deployment and SQLite but has separate credentials and
 fixture tables. The runner uses loopback HTTP, never in-process canned responses.
 Container startup initializes /data ownership then drops to UID 10001.
+
+Operational limit observed during UI deployment: provider migration reset the
+case database despite configured volume storage. Container restart survival was
+proved separately. Cross-provider durability and deduplication after database loss
+are not supported; see docs/evidence/20261017-ui.md.

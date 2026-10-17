@@ -15,7 +15,9 @@ human expectation/disposition editing, exact approval, GitHub issue + thread rep
 read-back and durable uncertain/partial recovery now exist.
 Deployed live smoke completed an escalation and clarification; corrected replay
 produced one order while the faulty service produced two. A hosted container
-restart preserved completed actions and approval. All 36 deterministic tests pass.
+restart preserved completed actions and approval. The UI redeployment later
+migrated providers and reset case state; Gmail restored demo reports with new IDs.
+Avoid further redeployment during judging. All 36 deterministic tests pass.
 See [acceptance evidence](ACCEPTANCE.md) and [deployment/build identity](docs/evidence/20261017-deployment.md).
 
 ## Run locally (Windows / PowerShell)

@@ -1,7 +1,7 @@
 # BugProof implementation plan
 
 Prepared October 17, 2026, Asia/Karachi. **Implementation resumed by the participant
-on October 17 (DEC-16).** M0–M8 are complete with the controlled workflow deployed and verified;
+on October 17 (DEC-16).** M0–M8 are complete, including refreshed UI/live workflow verification;
 M9 participant video/PDF/social artifacts remain outstanding. Stop for material ambiguity and account needs.
 This plan does not authorize delegated agents or account creation on the user's behalf.
 
@@ -80,7 +80,7 @@ timeboxes, not validated duration estimates or a promise of completion.
 | M5 | Human review and exact-action approval | M4 | 30 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
 | M6 | Close the real issue + reply workflow | M5 | 45 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
 | M7 | Prove concurrency, partial failure and restart | M6 | 30 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
-| M8 | Deployed acceptance and operator rehearsal | M7 | 20 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
+| M8 | Deployed acceptance and operator rehearsal | M7 | 20 min | DONE / [latest UI and live proof](evidence/20261017-ui.md); earlier proof: [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
 | M9 | Video, PDF, access checks and freeze record | M8 for final proof; prepare artifact structure earlier | 40 min | NOT_STARTED / — |
 
 Total execution budget: 310 minutes, excluding this planning, external access

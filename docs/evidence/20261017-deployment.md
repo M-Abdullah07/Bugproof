@@ -1,5 +1,9 @@
 # Alternate Clouds deployment verification
 
+Latest application image: `55121985153118d1b605a4991674d170d54da25c`.
+See [UI redeployment/recovery record](20261017-ui.md) for current cases, issue #3,
+and the observed provider-migration data-loss limit. The initial run below is historical.
+
 Date: October 17, 2026, approximately 10:00–10:20 PKT. Status: PASS.
 Project: BugProof. Active deployment target: BugProof Live,
 service `cmvbxi3v5197nbs1u2rwc0lxc`.
