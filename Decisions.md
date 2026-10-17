@@ -27,12 +27,15 @@ instructions take precedence; record any changed decision and update affected do
 | DEC-16 | Resume implementation; stop and ask at material ambiguity; notify user when a new account is needed | Enables building while retaining user alignment and account control | October 17 direct instruction: "Let's start implementation using all the material and plans that we have" |
 | DEC-17 | Skip local Docker installation/builds; retain the existing Dockerfile for remote packaging if hosting requires it | Saves workstation setup time without assuming Alternate Clouds supports a Python process directly | Participant asked to avoid Docker overhead; local Python already runs; remote build/deployment remains unverified |
 | DEC-18 | Use the participant's existing Gemini API access instead of requiring a Groq signup | Avoids unnecessary account setup; verify available structured-output model and actual quota before live use | Participant reported a Gemini key; assistant accepted it as suitable |
+| DEC-19 | Use OAuth for mcp.fastn.dev; execute exact discovered workspace connector actions | Dashboard API keys repeatedly received 401; official gateway metadata documents OAuth; live workspace/provider reads now succeed | Participant completed both browser sign-ins; verified live evidence |
+| DEC-20 | Controlled live tests may send self-addressed synthetic Gmail reports/replies and marked issues in M-Abdullah07/Bugproof | Provides actual integration proof within owned destinations | Participant explicitly chose these controlled destinations on October 17 |
+| DEC-21 | Upload demo Gemini/OAuth/operator/lab credentials through Alternate Clouds despite its plaintext-to-selected-provider notice | Required for this approved demo; credentials remain absent from source/Git | Participant explicitly approved this credential transmission after seeing the platform notice |
 
 ## Unverified dependencies
 
 | Gate | Needed proof | If unavailable |
 | --- | --- | --- |
-| fastn connector capabilities and accounts | [User-corrected mcp.fastn.dev endpoint returns HTTP 401](docs/evidence/20261017-fastn-discovery.md); saved Bearer credential not accepted; Gmail/GitHub connection reported by user, unverified through API | Resolve credential acceptance; no fake integration or bypass |
+| fastn connector capabilities and accounts | [OAuth and active googleGmail/github metadata verified](docs/evidence/20261017-fastn-discovery.md); actual operations, refresh and deployed provisioning remain unverified | Prove exact connector actions and recovery; no fake integration or bypass |
 | Alternate Clouds + storage | Participant reports account with $5 balance; actual deployment and storage survival unverified | Resolve hosting/storage before recovery claims |
 | Model and controlled Gmail credentials | [Gemini model listing verified](docs/evidence/20261017-gemini-model-access.md); selected model available; generation/quota and fastn/Gmail setup unverified | Keep credentials outside Git; no full-workflow success claim yet |
 | Event fastn rule | Organizer clarification | Retain fastn centrally pending clarification |

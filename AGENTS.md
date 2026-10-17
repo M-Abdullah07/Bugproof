@@ -4,8 +4,8 @@
 
 BugProof's MVP scope is approved. The user explicitly resumed implementation on
 October 17, 2026. Stop and ask about material ambiguities; tell the user whenever
-an account must be created. Local authenticated foundation exists; fastn/model
-connections and Alternate Clouds deployment remain unverified. Retain fastn
+an account must be created. Local workflow, real fastn/model operations and 35 tests are verified;
+Alternate Clouds deployment and host restart remain unverified. Retain fastn
 MCP centrally while its event requirement remains unclear.
 
 For exact behavior or scope changes, read `docs/specs/bugproof.md` (implementation
@@ -17,7 +17,7 @@ unpublished as an issue. Keep it in the repository unless directly instructed ot
 
 - Before changing a decision or reopening a tradeoff, read `Decisions.md`.
 - Before implementation planning or editing source boundaries, read `Architecture.md`.
-  Its source/test paths are planned until code exists; build runnable slices rather than empty placeholders.
+  Its paths map implemented ownership; keep changes within the narrow boundary.
 - For milestone execution or a build handoff, read `docs/implementation-plan.md`;
   follow its dependencies and exit checks after explicit resume, recording actual evidence.
 - Before tests, acceptance claims or verification work, read `ACCEPTANCE.md`.
@@ -64,3 +64,12 @@ unpublished as an issue. Keep it in the repository unless directly instructed ot
 - Participants must write LinkedIn/Twitter posts themselves; grammar help only.
 - Keep credentials private. Use synthetic support reports and isolated test API
   records. Missing or conflicting customer facts require review; preserve uncertainty.
+
+## Live integration handoff
+
+- Read `docs/evidence/20261017-workflow.md` before live provider/recovery work.
+- Use `scripts/live-smoke.py --help` for opted-in API rehearsal; seed sends are
+  explicit via `scripts/seed-demo.py --allow-live`. Destinations stay controlled.
+- Keep one active OAuth writer. Stop local app/probes before exporting the latest
+  private OAuth state to cloud; preserve rotated cloud tokens on `/data`.
+- Read-only reconciliation after expiry/revision never authorizes resend.

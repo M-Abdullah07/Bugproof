@@ -15,6 +15,14 @@ class Settings:
     build_ref: str = "development"
     secure_cookies: bool = False
     port: int = 8000
+    gemini_key: str = field(default="", repr=False)
+    model: str = "gemini-3.8-flash"
+    mailbox: str = ""
+    repository: str = "M-Abdullah07/Bugproof"
+    oauth_path: Path = Path(".data/fastn-oauth.json")
+    oauth_json: str = field(default="", repr=False)
+    lab_secret: str = field(default="", repr=False)
+    approval_seconds: int = 900
 
     def __post_init__(self):
         if len(self.demo_password) < 12:
@@ -34,4 +42,11 @@ class Settings:
             build_ref=values.get("BUGPROOF_BUILD_REF") or "development",
             secure_cookies=values.get("BUGPROOF_ENV") == "production",
             port=int(values.get("PORT") or 8000),
+            gemini_key=values.get("GEMINI_API_KEY") or "",
+            model=values.get("BUGPROOF_MODEL") or "gemini-3.8-flash",
+            mailbox=values.get("BUGPROOF_MAILBOX") or "",
+            repository=values.get("BUGPROOF_REPOSITORY") or "M-Abdullah07/Bugproof",
+            oauth_path=Path(values.get("BUGPROOF_FASTN_OAUTH_PATH") or ".data/fastn-oauth.json"),
+            oauth_json=values.get("BUGPROOF_FASTN_OAUTH_JSON") or "",
+            lab_secret=values.get("BUGPROOF_LAB_SECRET") or values.get("BUGPROOF_SESSION_SECRET") or "",
         )

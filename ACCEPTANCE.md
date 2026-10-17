@@ -1,11 +1,11 @@
 # BugProof acceptance and evidence
 
-**Full-product verdict: NOT RUN.** Local foundation exists with seven passing
-tests; no full-workflow or deployment claim has passed.
-Scope approval and plan-review checks are not executable product evidence.
-The [specification](docs/specs/bugproof.md) defines behavior; this file tracks
-whether that behavior has been demonstrated. Implementation resumed under DEC-16;
-account preflight is in progress. No product acceptance claim has passed.
+**Full-product verdict: NOT RUN on the mandatory host.** Local workflow
+implementation has 35 passing tests, real Gemini/fastn escalation and clarification,
+corrected replay, OAuth refresh and marker-search proof. A15 host restart and A16
+Alternate Clouds smoke remain outstanding. Scope approval is not product evidence.
+The [specification](docs/specs/bugproof.md) defines behavior; evidence below records
+what ran and its limits. Local browser rehearsal is not commercial user validation.
 
 ## Evidence rules
 
@@ -28,35 +28,33 @@ separately: deterministic / live / manual. No numeric score is inferred.
 
 ## Acceptance ledger
 
-All evidence cells are intentionally empty until execution. Suggested locations
-are future files, not executable commands. Pass means every assertion in that row
-has current evidence; split a row if part passes while another part does not.
+PASS below is local deterministic/live/manual proof in the linked record.
+Cloud integration and host restart remain separate outstanding requirements.
 
 | ID | Claim / required observable result | Verification boundary | Status | Runnable evidence |
 | --- | --- | --- | --- | --- |
-| A01 | Rechecking unchanged intake and ingesting own replies preserves one case per mailbox/thread | API + controlled intake; case workflow tests | NOT_RUN | — |
-| A02 | Same-key/same-payload retry on faulty API yields two distinct stored orders, actual HTTP trace and observed build | API + actual lab; case workflow tests | NOT_RUN | — |
-| A03 | Corrected API yields one order for the same claim; no automatic dismissal | API + actual lab; case workflow tests | NOT_RUN | — |
-| A04 | Paraphrase and changed synthetic inputs still produce a supported, grounded experiment and behavior-derived result | Deterministic API scenarios + small live model rehearsal | NOT_RUN | — |
-| A05 | Missing/unsupported facts produce specific clarification/unsupported state, with no fabricated customer evidence or irrelevant run | Case workflow tests | NOT_RUN | — |
-| A06 | Malformed or ungrounded model output gets at most one correction, then visible error; no publication | Controlled model through API | NOT_RUN | — |
-| A07 | Unknown targets/operations, cross-fixture reads and request/time/body limits fail explicitly; omitted trace content cannot support an assertion | API + actual lab adversarial cases | NOT_RUN | — |
-| A08 | Instructions embedded in email/API data cannot authorize tools, change destinations, execute code or publish | Hostile synthetic fixtures through API | NOT_RUN | — |
-| A09 | Human expectation edits reevaluate complete observations; changed plans need a fresh run; invalidated/rejected approvals produce zero effects | Review flow through API | NOT_RUN | — |
-| A10 | Absent, expired, stale, edited-payload and cross-case approvals are rejected by server; unauthenticated actions fail | Publication API tests | NOT_RUN | [Foundation subset only](docs/evidence/20261017-foundation.md); approval engine absent |
-| A11 | Simultaneous submissions share one durable action owner; completed effects are reused, not duplicated; network I/O holds no SQLite write transaction | Controlled provider timing; publication tests | NOT_RUN | — |
-| A12 | Provider success followed by timeout reconciles existing identity/marker, or visibly becomes uncertain before another send | Fault-injected publication tests + live capability check | NOT_RUN | — |
-| A13 | Successful issue survives email failure; retry only unfinished eligible reply, preserve issue/link, declare complete only after both verified | Publication tests | NOT_RUN | — |
-| A14 | Imported new source evidence invalidates stale approval; between issue and reply it preserves issue and stops remaining writes | Publication tests with controlled timing | NOT_RUN | — |
+| A01 | Rechecking unchanged intake and ingesting own replies preserves one case per mailbox/thread | API + controlled intake; case workflow tests | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A02 | Same-key/same-payload retry on faulty API yields two distinct stored orders, actual HTTP trace and observed build | API + actual lab; case workflow tests | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A03 | Corrected API yields one order for the same claim; no automatic dismissal | API + actual lab; case workflow tests | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A04 | Paraphrase and changed synthetic inputs still produce a supported, grounded experiment and behavior-derived result | Deterministic API scenarios + small live model rehearsal | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A05 | Missing/unsupported facts produce specific clarification/unsupported state, with no fabricated customer evidence or irrelevant run | Case workflow tests | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A06 | Malformed or ungrounded model output gets at most one correction, then visible error; no publication | Controlled model through API | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A07 | Unknown targets/operations, cross-fixture reads and request/time/body limits fail explicitly; omitted trace content cannot support an assertion | API + actual lab adversarial cases | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A08 | Instructions embedded in email/API data cannot authorize tools, change destinations, execute code or publish | Hostile synthetic fixtures through API | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A09 | Human expectation edits reevaluate complete observations; changed plans need a fresh run; invalidated/rejected approvals produce zero effects | Review flow through API | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A10 | Absent, expired, stale, edited-payload and cross-case approvals are rejected by server; unauthenticated actions fail | Publication API tests | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A11 | Simultaneous submissions share one durable action owner; completed effects are reused, not duplicated; network I/O holds no SQLite write transaction | Controlled provider timing; publication tests | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A12 | Provider success followed by timeout reconciles existing identity/marker, or visibly becomes uncertain before another send | Fault-injected publication tests + live capability check | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A13 | Successful issue survives email failure; retry only unfinished eligible reply, preserve issue/link, declare complete only after both verified | Publication tests | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A14 | Imported new source evidence invalidates stale approval; between issue and reply it preserves issue and stops remaining writes | Publication tests with controlled timing | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
 | A15 | Restart preserves completed provider IDs; ambiguous attempts reconcile, claim expiry never permits blind resend; interrupted experiments get fresh run/fixture | Process restart + durable SQLite + actual host restart | NOT_RUN | [Local app reconstruction subset](docs/evidence/20261017-foundation.md); no provider/host restart proof |
 | A16 | On Alternate Clouds, real fastn intake -> human-approved GitHub create/read-back -> original-thread Gmail reply/read-back works in owned accounts | Separately enabled deployed live smoke | NOT_RUN | — |
-| A17 | Operator can inspect source/evidence, edit expectation, reject/approve and recover visibly without reading raw JSON; refresh/reopen retains state | Browser rehearsal with explicit steps and current build | NOT_RUN | [Login/empty HTML subset](docs/evidence/20261017-foundation.md); full workspace not built |
+| A17 | Operator can inspect source/evidence, edit expectation, reject/approve and recover visibly without reading raw JSON; refresh/reopen retains state | Browser rehearsal with explicit steps and current build | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
 
 A01–A16 correspond in order to the specification's acceptance table. A17 makes
 its existing workspace contract directly reviewable; it adds no new feature.
 Suggested test files are mapped in Architecture.md; fill actual selectors when
-the tests exist. Current foundation commands are in README; full-workflow
-tests and live smoke are not implemented.
+the tests exist. Current workflow commands and opted-in live smoke are in README.
 
 ## Evidence record format
 

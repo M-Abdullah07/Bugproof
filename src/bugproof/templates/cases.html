@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block account %}<form method="post" action="/logout">
 <input type="hidden" name="csrf_token" value="{{ csrf }}"><button class="secondary">Sign out</button></form>{% endblock %}
-{% block content %}<p class="eyebrow">Support workspace</p><h1>Reports</h1>
-<p class="notice">Gmail, GitHub and AI are not connected. No external actions are available yet.</p>
-{% if cases %}<section class="card"><ul>{% for case in cases %}
-<li><strong>{{ case.id }}</strong> · {{ case.thread_id }} · Revision {{ case.source_revision }}</li>
-{% endfor %}</ul></section>
-{% else %}<section class="card empty"><h2>No reports imported yet</h2>
-<p>Connect the controlled support mailbox to begin. Reports will appear here after intake.</p>
-<p>Every report starts as a claim. Recorded observations and a human decision come next.</p></section>{% endif %}
-<p class="build">Build {{ build }}</p>{% endblock %}
+{% block content %}
+<div class="topline"><div><div class="eyebrow">Support investigation workspace</div><h1>Turn a report into<br>evidence worth acting on.</h1><p>Reproduce in the lab. Inspect what happened. Decide what happens next.</p></div><span class="pill">Human decision required</span></div>
+{% if notice %}<p class="notice" role="status">{{notice}}</p>{% endif %}
+<div class="integration-bar"><span>01 · Gmail intake</span><span>02 · Bounded experiment</span><span>03 · Your decision</span><span>04 · GitHub + reply</span></div>
+<section class="card"><div class="topline"><div><h2>Reports to investigate <span class="count">{{cases|length}}</span></h2><p class="small">Only team-controlled “BugProof Demo” threads are eligible.</p></div><form method="post" action="/intake"><input type="hidden" name="csrf_token" value="{{csrf}}"><button>Check demo inbox ↗</button></form></div>
+{% for case in cases %}<a class="case-row" href="/cases/{{case.id}}"><div><strong>{{case.source.messages[-1].subject if case.source.get('messages') else 'Imported report'}}</strong><p class="small">{{case.state.get('proposal',{}).get('claim','Ready for a grounded investigation.')}}</p></div><span class="pill">{{(case.delivery_status or case.state.get('status','needs_investigation'))|replace('_',' ')}}</span></a>
+{% else %}<div class="empty"><h3>No reports imported yet</h3><p>Check the controlled demo inbox after sending a synthetic report. Integration operations are not connected to a case until intake runs.</p></div>{% endfor %}
+</section>
+<div class="grid info"><section><h3>The AI proposes.</h3><p>It extracts the claim and names missing facts. It cannot publish or run arbitrary code.</p></section><section><h3>The runner observes.</h3><p>Identical retries reach an actual isolated API. Order IDs and HTTP responses support the result.</p></section><section><h3>You decide.</h3><p>Change the expectation, choose the next step, and approve the exact issue and reply.</p></section></div>
+<p class="build">Build {{build}} · Repository {{repository}} · {% if configured %}Provider credentials configured; verify each operation through its result.{% else %}Live providers not configured.{% endif %}</p>
+{% endblock %}

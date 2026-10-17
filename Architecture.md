@@ -1,6 +1,6 @@
 # BugProof architecture
 
-Status: **foundation implemented; workflow planned**. Execution resumed under DEC-16.
+Status: **workflow implemented locally; cloud deployment verification pending**. Execution resumed under DEC-16.
 Read the [specification](docs/specs/bugproof.md) for full behavioral contracts,
 [Decisions.md](Decisions.md) for rationale and [ACCEPTANCE.md](ACCEPTANCE.md)
 for proof obligations. This map explains ownership; it adds no product scope.
@@ -39,9 +39,9 @@ cannot choose arbitrary destinations, run generated code or authorize publicatio
 
 ## Planned code ownership
 
-Config, SQLite storage, web routes/templates/static assets and startup now exist;
-the workflow/proposal/experiment/review/publication modules and lab remain planned.
-The table describes final ownership, not a claim that every path exists. Keep
+The application, five workflow boundaries, fastn/OAuth adapter and lab now exist.
+The table maps their ownership. Tests for workflow and publication currently share
+`tests/test_case_workflow.py`; a separate publication file is unnecessary. Keep
 five responsibility boundaries; split files only for concrete readability/dependency needs.
 
 | Planned location | Owns | Must not own |
@@ -56,8 +56,8 @@ five responsibility boundaries; split files only for concrete readability/depend
 | `src/bugproof/web.py`, `templates/` | Authenticated routes and server-rendered views | Trusting browser-supplied approval flags |
 | `src/bugproof_lab/` | Synthetic order state, faulty/corrected behavior, authenticated fixture reset | Production data or canned results selected by report wording |
 | `tests/test_case_workflow.py` | Main authenticated API acceptance scenarios with actual lab HTTP | Claims of live provider acceptance from doubles |
-| `tests/test_publication.py` | Approval, concurrency, partial failure and restart proof | Dependence on private helper names |
-| `tests/test_live_smoke.py` | Explicitly enabled real integration/deployment smoke | Uncontrolled recipients, repositories or effects |
+| `tests/test_case_workflow.py` (publication scenarios) | Approval, concurrency, partial failure and restart proof | Dependence on private helper names |
+| `scripts/live-smoke.py` | Explicitly enabled real integration/deployment smoke | Uncontrolled recipients, repositories or effects |
 
 Supporting transport/storage/view files are not additional autonomous services.
 The lab is a separate authority boundary, not a requirement for another hosting
@@ -90,9 +90,9 @@ manual reconciliation, rather than a blind retry or false success.
 ## Build and runtime discovery
 
 Manifest, startup, test command, environment example and Dockerfile now exist;
-verified local commands are in README. No deployed URL exists. Seven foundation
-tests in `tests/test_foundation.py` prove only local auth/storage behavior; the
-Docker build, platform mount and full acceptance remain unverified.
+verified local commands are in README. No deployed URL exists yet. Foundation
+and actual-TCP-lab workflow tests pass; current counts and exact proof are in
+ACCEPTANCE.md. The cloud build, platform mount and full deployed smoke remain unverified.
 Local development runs Python directly (DEC-17). Keep existing container packaging
 for a remote build if required; installing Docker locally is not a milestone.
 
@@ -100,3 +100,22 @@ Hosting must honor platform PORT and explicit Alternate Clouds Rebuild -> Deploy
 Prove storage survival on that host. Provider capabilities, credentials and
 reconciliation must be checked before dependent feature investment. All run and
 deployment claims need current evidence in ACCEPTANCE.md.
+
+## Implemented transport and recovery details
+
+Fastn uses the official MCP SDK OAuth provider, then the workspace executeAction
+tool with catalog-discovered public action/connector IDs. It normalizes responses;
+no direct Gmail/GitHub bypass exists. The `googleGmail` slug differs from `gmail`.
+Private OAuth state is stored separately from cases; one worker serializes refresh.
+The cloud bootstrap must use the latest local OAuth file, then the cloud becomes
+the sole active token writer. On-disk rotated tokens take precedence over bootstrap.
+
+SQLite stores case state versions, immutable history, approval snapshots, action
+ownership/results and action payload snapshots. Read-only reconciliation uses the
+original snapshot even after source updates or approval expiry; it cannot resend.
+Only an explicit provider rejection can become an eligible failed attempt;
+ambiguous attempts remain uncertain if bounded lookup finds no match.
+
+The lab router shares the deployment and SQLite but has separate credentials and
+fixture tables. The runner uses loopback HTTP, never in-process canned responses.
+Container startup initializes /data ownership then drops to UID 10001.

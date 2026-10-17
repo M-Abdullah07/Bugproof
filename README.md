@@ -3,10 +3,13 @@
 A support report becomes evidence a developer can act on, followed by a
 human-approved engineering handoff and reporter reply.
 
-**Implementation resumed: local foundation works; full workflow is not built.**
-Login, case-list/API, health/build reporting and persistent SQLite are implemented.
-Seven local tests pass. No fastn/model connections, lab reproduction, publication
-or Alternate Clouds deployment is verified. All demo data will be synthetic.
+**Implemented locally: the complete controlled workflow.**
+Gmail intake through fastn, grounded Gemini interpretation, real HTTP experiments,
+human expectation/disposition editing, exact approval, GitHub issue + thread reply,
+read-back and durable uncertain/partial recovery now exist.
+Local live smoke completed an escalation and clarification; corrected replay
+produced one order while the faulty service produced two. Cloud deployment and
+host restart proof remain pending. See [acceptance evidence](ACCEPTANCE.md).
 
 ## Run locally (Windows / PowerShell)
 
@@ -29,9 +32,10 @@ environment; use `BUGPROOF_ENV=production` for HTTPS-only session cookies on the
 .venv\Scripts\python.exe -m pytest -q -m "not live"
 ```
 
-This covers only the local foundation. Windows Codex sandbox restrictions required
+This exercises authenticated workflow scenarios with a real local TCP lab and
+controlled AI/provider responses. Windows Codex sandbox restrictions required
 the test runner to execute with local escalation; pytest temporary data stays
-under `.tools/pytest-tmp`. One upstream TestClient/httpx deprecation warning is known.
+under `.tools/pytest-tmp`. Provider doubles are not live integration proof.
 Local development uses Python directly; Docker Desktop/local builds are skipped.
 The existing Dockerfile is retained for remote packaging if needed. Its build
 and the real platform storage mount are NOT verified.
@@ -43,14 +47,13 @@ and the real platform storage mount are NOT verified.
   [read-only discovery](docs/evidence/20261017-gemini-model-access.md).
   Generation/structured output and actual free quota remain unverified.
   No Groq account is needed. Model adapter is not implemented yet.
-- fastn: create a workspace at https://app.fastn.ai and connect controlled Gmail/GitHub.
-  User supplied `https://mcp.fastn.dev`; it is reachable but the saved Bearer
-  credential returns [HTTP 401](docs/evidence/20261017-fastn-discovery.md).
-  Resolve MCP credential acceptance; tool/project/account mapping remains unverified.
-  Replay read-only discovery with `.venv\Scripts\python.exe scripts/check-fastn-access.py`.
-  `FASTN_MCP_URL` optionally overrides the documented hosted endpoint with a verified
-  HTTPS approved fastn URL (`mcp.fastn.dev` or fastn.ai hosts); credentials belong
-  in headers, never a URL query.
+- fastn: OAuth at `https://mcp.fastn.dev` and the linked workspace report active
+  `googleGmail` and `github` connections. [Evidence and remaining limits](docs/evidence/20261017-fastn-discovery.md).
+  Run `.venv\Scripts\python.exe scripts/connect-fastn-oauth.py` for interactive
+  sign-in/tool listing. Private tokens/client registration stay in ignored
+  `.data/fastn-oauth.json`; do not commit or share that file. Refresh execution
+  and deployed provisioning remain unverified. The older API-key discovery script
+  still fails on this OAuth endpoint; it is not the current login route.
 - GitHub origin is already configured. No specification issue will be published.
 
 ## Start here
@@ -82,3 +85,32 @@ tool installation means the product is implemented.
 
 Keep verified commands aligned with manifests and use ACCEPTANCE.md for proof.
 See [third-party licenses](docs/licenses/).
+
+## Operate the demo
+
+1. Run `python scripts/connect-fastn-oauth.py` inside the virtual environment;
+   complete gateway login and the workspace connection when requested.
+2. Configure Gemini, a separate lab secret, the connected controlled mailbox,
+   operator secrets and owned repository in private `.env` (see `.env.example`).
+3. To send the three self-addressed synthetic reports through fastn, explicitly run
+   `.venv\Scripts\python.exe scripts/seed-demo.py --allow-live`.
+4. Open `/login`, then **Check demo inbox**. Open a report and **Investigate**.
+5. Inspect order IDs/trace. Edit expectation or disposition; **Save edits**, then
+   approve the exact saved actions. Unsaved changes cannot be approved.
+6. **Publish / reconcile approved actions**. A verified issue appears before the
+   reply is sent. Use the separate read-only delivery check after an uncertain
+   outcome, expired approval or new source. A missing match never permits resend.
+
+Opted-in live API rehearsal (creates demo issue/reply with `--publish`):
+
+```powershell
+.venv\Scripts\python.exe scripts/live-smoke.py --allow-live --publish
+.venv\Scripts\python.exe scripts/live-smoke.py --allow-live --build corrected
+.venv\Scripts\python.exe scripts/live-smoke.py --allow-live --scenario missing --publish
+```
+
+These scripts drive the authenticated app. Scripted approval is a preauthorized
+connectivity test, not a claim that a human performed a UX rehearsal. Do not run
+multiple local/cloud OAuth writers: stop the local server before handing the
+latest credentials to the deployment. Cloud SQLite and OAuth files belong on
+persistent `/data`; verify a real restart before asserting host durability.

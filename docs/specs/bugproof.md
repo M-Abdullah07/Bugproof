@@ -2,8 +2,8 @@
 
 Scope: approved by the participant. Testing boundary: approved.
 Execution: **RESUMED October 17, 2026 by direct participant instruction (DEC-16).**
-Local authenticated foundation and seven tests exist; account/deployment checks
-are pending. Stop for material ambiguity; notify the user
+Local workflow and live model/provider operations are verified; deployment and
+host restart checks are pending. Current results are in ACCEPTANCE.md. Stop for material ambiguity; notify the user
 when a new account is needed. The October 16 review below preserves historical
 hold statements and decisions; they do not override this explicit resume.
 Tracker: GitHub Issues, M-Abdullah07/Bugproof. Participant chose no spec issue. Future issue label if requested:
