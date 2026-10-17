@@ -2,7 +2,7 @@
 
 Rubric and event constraints below were supplied by the participants; they are
 not independently reconfirmed here. Total: **100 points**. No score is awarded
-or predicted. Current product evidence: NOT_RUN; implementation is HELD.
+or predicted. Current product evidence: NOT_RUN; implementation resumed under DEC-16.
 Use [ACCEPTANCE.md](../ACCEPTANCE.md) for current results and runnable evidence,
 not a second copy of the pass/fail ledger.
 

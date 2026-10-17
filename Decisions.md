@@ -1,6 +1,6 @@
 # BugProof decisions
 
-Execution: **HELD** until the participant explicitly resumes development.
+Execution: **RESUMED October 17, 2026** by direct participant instruction (DEC-16).
 Behavioral contract: [specification](docs/specs/bugproof.md). This ledger records
 decisions and reasons; it does not silently amend that contract. Direct human
 instructions take precedence; record any changed decision and update affected docs.
@@ -9,7 +9,7 @@ instructions take precedence; record any changed decision and update affected do
 
 | ID | Decision | Why it survives | Authority / provenance |
 | --- | --- | --- | --- |
-| DEC-01 | Documentation only; no application or deployment work yet | Preserves the participant's explicit implementation hold | Direct participant instruction, reiterated throughout specification/review |
+| DEC-01 | SUPERSEDED by DEC-16: previous documentation-only hold | Records the earlier instruction without treating it as current | Prior direct participant instruction |
 | DEC-02 | Serve a support engineer: Gmail report to engineering handoff and reporter reply | One operator, one complete observable rescue | Participant chose support-to-engineering handoff |
 | DEC-03 | Demonstrate duplicate orders after retry; replay corrected behavior and request missing information | Actual state distinguishes outcomes; avoids a canned success-only demo | Participant selected anchor incident and assembled MVP |
 | DEC-04 | Auto-run bounded experiments against a registered isolated test API | Automates repetitive investigation without granting arbitrary execution | Participant approved bounded auto-run; specification defines limits |
@@ -24,19 +24,20 @@ instructions take precedence; record any changed decision and update affected do
 | DEC-13 | Cut Trello, automatic fixes, arbitrary code/browser execution, extra agents, dashboards and generic API onboarding | Each distracts from completing the selected handoff | Approved assembled scope; specification Out of Scope |
 | DEC-14 | GitHub is the project tracker; keep the specification out of GitHub Issues | Repository documentation is sufficient; avoids unnecessary public issue publication | Participant explicitly chose Leave unpublished after approval-review rejection |
 | DEC-15 | No delegated agents without direct user authorization; local-only skills/state | Maintains the participant's working constraints | AGENTS.md / direct instructions |
+| DEC-16 | Resume implementation; stop and ask at material ambiguity; notify user when a new account is needed | Enables building while retaining user alignment and account control | October 17 direct instruction: "Let's start implementation using all the material and plans that we have" |
 
 ## Unverified dependencies
 
 | Gate | Needed proof | If unavailable |
 | --- | --- | --- |
 | fastn connector capabilities and accounts | Intake, issue create/read-back, same-thread reply, reconciliation behavior | Stop dependent work and explicitly revise; no fake integration |
-| Alternate Clouds + storage | Reachable deployment and SQLite survival across actual restart | Resolve hosting/storage before recovery claims |
-| Model and controlled Gmail credentials | Small permitted live interpretation and owned-account smoke | Configure after development resumes; keep credentials outside Git |
+| Alternate Clouds + storage | Participant reports account with $5 balance; actual deployment and storage survival unverified | Resolve hosting/storage before recovery claims |
+| Model and controlled Gmail credentials | Groq recommended for strict-schema free-tier calls; account/key pending; fastn/Gmail setup needed | Keep credentials outside Git; no live success claim yet |
 | Event fastn rule | Organizer clarification | Retain fastn centrally pending clarification |
 
 Demand and time savings remain unvalidated. A successful synthetic demo does not
 resolve those questions. Organizer permission to develop is confirmed; DEC-01 is
-the participant's separate hold.
+the participant's former separate hold, now superseded by DEC-16.
 
 ## Update rule
 

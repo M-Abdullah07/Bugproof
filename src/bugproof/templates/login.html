@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Sign in · BugProof{% endblock %}
+{% block content %}<section class="card login">
+<p class="eyebrow">Support workspace</p><h1>Evidence before escalation.</h1>
+<p>Inspect a report, verify the behavior, and decide what happens next.</p>
+<form method="post" action="/login">
+<input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="password">Demo password</label>
+<input id="password" name="password" type="password" autocomplete="current-password" required>
+{% if error %}<p role="alert" class="error">{{ error }}</p>{% endif %}
+<button type="submit">Open workspace</button></form>
+</section>{% endblock %}

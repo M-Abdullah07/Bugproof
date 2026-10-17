@@ -1,8 +1,9 @@
 # BugProof implementation plan
 
-Prepared October 17, 2026, Asia/Karachi. **Planning only; implementation remains
-HELD until the participant directly resumes it.** No task below has been executed.
-This document authorizes neither delegated agents nor external account actions.
+Prepared October 17, 2026, Asia/Karachi. **Implementation resumed by the participant
+on October 17 (DEC-16).** Local M1 foundation implemented/tested; first deployment
+and M0/M2 account checks remain unfinished. Stop for material ambiguity and account needs.
+This plan does not authorize delegated agents or account creation on the user's behalf.
 
 Behavior comes from the [specification](specs/bugproof.md); rationale from
 [Decisions.md](../Decisions.md); ownership from [Architecture.md](../Architecture.md).
@@ -71,8 +72,8 @@ timeboxes, not validated duration estimates or a promise of completion.
 
 | ID | Milestone | Depends on | Timebox | Status / evidence |
 | --- | --- | --- | ---: | --- |
-| M0 | Resume and preflight | Direct participant resume | 5 min | NOT_STARTED / — |
-| M1 | Runnable authenticated foundation and first deployment | M0 | 25 min | NOT_STARTED / — |
+| M0 | Resume and preflight | Direct participant resume | 5 min | IN_PROGRESS / account access clarification pending |
+| M1 | Runnable authenticated foundation and first deployment | M0 | 25 min | IN_PROGRESS / [local foundation](evidence/20261017-foundation.md); deployment pending |
 | M2 | Prove integrations and persistent storage | M1 | 35 min | NOT_STARTED / — |
 | M3 | Actual faulty/corrected lab and bounded runner | M2 | 40 min | NOT_STARTED / — |
 | M4 | Gmail intake and grounded AI investigation | M3 | 40 min | NOT_STARTED / — |
@@ -441,4 +442,6 @@ Complete means the approved workflow is deployed on Alternate Clouds, actual
 evidence supports A01–A17, the human can change permitted effects, partial/uncertain
 states recover honestly, and required submission artifacts are accessible before
 freeze. This plan being written, a green unit test, or a polished UI is not that
-completion. Current progress remains NOT_STARTED throughout.
+completion. Current progress: M0/M1 in progress; M2–M9 not started. Independent
+local M1 work proceeded while human account setup was pending; no later provider-dependent
+milestone is treated as started or complete.

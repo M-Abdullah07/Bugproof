@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block account %}<form method="post" action="/logout">
+<input type="hidden" name="csrf_token" value="{{ csrf }}"><button class="secondary">Sign out</button></form>{% endblock %}
+{% block content %}<p class="eyebrow">Support workspace</p><h1>Reports</h1>
+<p class="notice">Gmail, GitHub and AI are not connected. No external actions are available yet.</p>
+{% if cases %}<section class="card"><ul>{% for case in cases %}
+<li><strong>{{ case.id }}</strong> · {{ case.thread_id }} · Revision {{ case.source_revision }}</li>
+{% endfor %}</ul></section>
+{% else %}<section class="card empty"><h2>No reports imported yet</h2>
+<p>Connect the controlled support mailbox to begin. Reports will appear here after intake.</p>
+<p>Every report starts as a claim. Recorded observations and a human decision come next.</p></section>{% endif %}
+<p class="build">Build {{ build }}</p>{% endblock %}

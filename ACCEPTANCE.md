@@ -1,9 +1,11 @@
 # BugProof acceptance and evidence
 
-**Current verdict: NOT RUN.** No application, tests or deployment exists.
+**Full-product verdict: NOT RUN.** Local foundation exists with seven passing
+tests; no full-workflow or deployment claim has passed.
 Scope approval and plan-review checks are not executable product evidence.
 The [specification](docs/specs/bugproof.md) defines behavior; this file tracks
-whether that behavior has been demonstrated. Execution remains HELD.
+whether that behavior has been demonstrated. Implementation resumed under DEC-16;
+account preflight is in progress. No product acceptance claim has passed.
 
 ## Evidence rules
 
@@ -41,19 +43,20 @@ has current evidence; split a row if part passes while another part does not.
 | A07 | Unknown targets/operations, cross-fixture reads and request/time/body limits fail explicitly; omitted trace content cannot support an assertion | API + actual lab adversarial cases | NOT_RUN | — |
 | A08 | Instructions embedded in email/API data cannot authorize tools, change destinations, execute code or publish | Hostile synthetic fixtures through API | NOT_RUN | — |
 | A09 | Human expectation edits reevaluate complete observations; changed plans need a fresh run; invalidated/rejected approvals produce zero effects | Review flow through API | NOT_RUN | — |
-| A10 | Absent, expired, stale, edited-payload and cross-case approvals are rejected by server; unauthenticated actions fail | Publication API tests | NOT_RUN | — |
+| A10 | Absent, expired, stale, edited-payload and cross-case approvals are rejected by server; unauthenticated actions fail | Publication API tests | NOT_RUN | [Foundation subset only](docs/evidence/20261017-foundation.md); approval engine absent |
 | A11 | Simultaneous submissions share one durable action owner; completed effects are reused, not duplicated; network I/O holds no SQLite write transaction | Controlled provider timing; publication tests | NOT_RUN | — |
 | A12 | Provider success followed by timeout reconciles existing identity/marker, or visibly becomes uncertain before another send | Fault-injected publication tests + live capability check | NOT_RUN | — |
 | A13 | Successful issue survives email failure; retry only unfinished eligible reply, preserve issue/link, declare complete only after both verified | Publication tests | NOT_RUN | — |
 | A14 | Imported new source evidence invalidates stale approval; between issue and reply it preserves issue and stops remaining writes | Publication tests with controlled timing | NOT_RUN | — |
-| A15 | Restart preserves completed provider IDs; ambiguous attempts reconcile, claim expiry never permits blind resend; interrupted experiments get fresh run/fixture | Process restart + durable SQLite + actual host restart | NOT_RUN | — |
+| A15 | Restart preserves completed provider IDs; ambiguous attempts reconcile, claim expiry never permits blind resend; interrupted experiments get fresh run/fixture | Process restart + durable SQLite + actual host restart | NOT_RUN | [Local app reconstruction subset](docs/evidence/20261017-foundation.md); no provider/host restart proof |
 | A16 | On Alternate Clouds, real fastn intake -> human-approved GitHub create/read-back -> original-thread Gmail reply/read-back works in owned accounts | Separately enabled deployed live smoke | NOT_RUN | — |
-| A17 | Operator can inspect source/evidence, edit expectation, reject/approve and recover visibly without reading raw JSON; refresh/reopen retains state | Browser rehearsal with explicit steps and current build | NOT_RUN | — |
+| A17 | Operator can inspect source/evidence, edit expectation, reject/approve and recover visibly without reading raw JSON; refresh/reopen retains state | Browser rehearsal with explicit steps and current build | NOT_RUN | [Login/empty HTML subset](docs/evidence/20261017-foundation.md); full workspace not built |
 
 A01–A16 correspond in order to the specification's acceptance table. A17 makes
 its existing workspace contract directly reviewable; it adds no new feature.
 Suggested test files are mapped in Architecture.md; fill actual selectors when
-the tests exist. There is currently **no application test/run command to execute**.
+the tests exist. Current foundation commands are in README; full-workflow
+tests and live smoke are not implemented.
 
 ## Evidence record format
 
@@ -75,7 +78,8 @@ Coverage limits: doubles, synthetic data, conditions not exercised
 Supersedes / invalidated by:
 ```
 
-No filled record exists yet. Attach failures too; do not replace them with a
+The first foundation record exists below `docs/evidence/`; it does not pass a
+whole-product row. Attach failures too; do not replace them with a
 successful screenshot. Keep the latest result visible in this ledger.
 
 ## Completion gates

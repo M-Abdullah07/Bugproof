@@ -1,6 +1,7 @@
 # BugProof alignment
 
-Status: scope approved; implementation explicitly paused. No application code.
+Status: implementation resumed October 17 (DEC-16). Local foundation has seven
+passing tests; account integration, reproduction/publication and deployment remain pending.
 The implementation contract is `docs/specs/bugproof.md`.
 
 ## Confirmed
@@ -30,7 +31,8 @@ The implementation contract is `docs/specs/bugproof.md`.
 ## Execution status
 
 The participant approved the assembled scope and the main API-level testing seam,
-then explicitly held implementation. Documentation synthesis only is authorized.
+then explicitly held implementation. On October 17 the participant directly
+resumed it, requesting a stop for material ambiguities and notice of account needs.
 GitHub Issues and origin are configured for M-Abdullah07/Bugproof; specification
 issue publication was explicitly declined by the participant; keep the spec in Git.
 Provider/account and deployment feasibility checks remain future build gates.

@@ -1,7 +1,11 @@
 # BugProof MVP specification
 
 Scope: approved by the participant. Testing boundary: approved.
-Execution: **HELD — documentation only until the participant explicitly resumes implementation.**
+Execution: **RESUMED October 17, 2026 by direct participant instruction (DEC-16).**
+Local authenticated foundation and seven tests exist; account/deployment checks
+are pending. Stop for material ambiguity; notify the user
+when a new account is needed. The October 16 review below preserves historical
+hold statements and decisions; they do not override this explicit resume.
 Tracker: GitHub Issues, M-Abdullah07/Bugproof. Participant chose no spec issue. Future issue label if requested:
 `ready-for-agent`; that label never overrides the execution hold.
 Date: October 16, 2026, Asia/Karachi.
@@ -304,8 +308,8 @@ target, not a promised or established performance claim.
 
 ## Out of Scope
 
-- Application implementation, dependency installation, account changes, live
-  tests, email sending and deployment during the current documentation-only hold.
+- Delegated agents without direct participant authorization and account creation
+  on the participant's behalf without their instruction.
 - Arbitrary repositories, generated code execution, browser reproduction,
   production services, payment processing and automatic code fixes.
 - Race-condition reproduction, universal API onboarding, unsupported incident
@@ -317,9 +321,11 @@ target, not a promised or established performance claim.
 
 ## Further Notes
 
-Implementation remains explicitly held despite approved scope and the intended
-tracker label. Resume only on a direct participant instruction. The repository
-currently contains tooling and documents, not application code or tests. Git
+Implementation resumed under DEC-16; scope labels alone never authorize it.
+The repository
+currently contains tooling, documents and the local authenticated/storage foundation
+with seven passing tests. The investigation/publication workflow and deployment
+remain unimplemented/unverified. Git
 origin and GitHub Issues are configured for M-Abdullah07/Bugproof. Public issue
 publication was explicitly declined after an automatic approval review rejection.
 Keep the specification in Git; create no issue unless the participant changes

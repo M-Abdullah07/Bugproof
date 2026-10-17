@@ -1,6 +1,6 @@
 # BugProof architecture
 
-Status: **planned, not implemented**. Execution is HELD (DEC-01).
+Status: **foundation implemented; workflow planned**. Execution resumed under DEC-16.
 Read the [specification](docs/specs/bugproof.md) for full behavioral contracts,
 [Decisions.md](Decisions.md) for rationale and [ACCEPTANCE.md](ACCEPTANCE.md)
 for proof obligations. This map explains ownership; it adds no product scope.
@@ -39,9 +39,10 @@ cannot choose arbitrary destinations, run generated code or authorize publicatio
 
 ## Planned code ownership
 
-Paths below are a proposed layout to establish when implementation resumes.
-They do **not** currently exist. Keep five responsibility boundaries; files may
-split when a concrete dependency or readability need justifies it.
+Config, SQLite storage, web routes/templates/static assets and startup now exist;
+the workflow/proposal/experiment/review/publication modules and lab remain planned.
+The table describes final ownership, not a claim that every path exists. Keep
+five responsibility boundaries; split files only for concrete readability/dependency needs.
 
 | Planned location | Owns | Must not own |
 | --- | --- | --- |
@@ -88,10 +89,10 @@ manual reconciliation, rather than a blind retry or false success.
 
 ## Build and runtime discovery
 
-No application manifest, startup command, test command, container, environment
-example or deployed URL exists yet. Add the smallest runnable slice after resume,
-then put actual commands in the root README and executable project configuration.
-Keep this document about boundaries rather than copying command inventories.
+Manifest, startup, test command, environment example and Dockerfile now exist;
+verified local commands are in README. No deployed URL exists. Seven foundation
+tests in `tests/test_foundation.py` prove only local auth/storage behavior; the
+Docker build, platform mount and full acceptance remain unverified.
 
 Hosting must honor platform PORT and explicit Alternate Clouds Rebuild -> Deploy.
 Prove storage survival on that host. Provider capabilities, credentials and

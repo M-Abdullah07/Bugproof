@@ -1,7 +1,8 @@
 # Execution evidence
 
-No product run records exist yet. This directory holds sanitized, attributable
-evidence when implementation/testing is authorized. Use the record format and
+The [foundation record](20261017-foundation.md) covers local authentication and
+storage only; no full-workflow/live run exists yet. This directory holds sanitized,
+attributable evidence. Use the record format and
 stable acceptance IDs in [ACCEPTANCE.md](../../ACCEPTANCE.md).
 
 Each run needs actual replay instructions, source/deployment identity, observed
