@@ -74,7 +74,7 @@ timeboxes, not validated duration estimates or a promise of completion.
 | --- | --- | --- | ---: | --- |
 | M0 | Resume and preflight | Direct participant resume | 5 min | IN_PROGRESS / account access clarification pending |
 | M1 | Runnable authenticated foundation and first deployment | M0 | 25 min | IN_PROGRESS / [local foundation](evidence/20261017-foundation.md); deployment pending |
-| M2 | Prove integrations and persistent storage | M1 | 35 min | IN_PROGRESS / [Gemini discovery only](evidence/20261017-gemini-model-access.md); fastn and hosting pending |
+| M2 | Prove integrations and persistent storage | M1 | 35 min | BLOCKED / [fastn MCP connection error](evidence/20261017-fastn-discovery.md); Gemini model listing verified, generation/hosting pending |
 | M3 | Actual faulty/corrected lab and bounded runner | M2 | 40 min | NOT_STARTED / — |
 | M4 | Gmail intake and grounded AI investigation | M3 | 40 min | NOT_STARTED / — |
 | M5 | Human review and exact-action approval | M4 | 30 min | NOT_STARTED / — |
@@ -449,6 +449,7 @@ Complete means the approved workflow is deployed on Alternate Clouds, actual
 evidence supports A01–A17, the human can change permitted effects, partial/uncertain
 states recover honestly, and required submission artifacts are accessible before
 freeze. This plan being written, a green unit test, or a polished UI is not that
-completion. Current progress: M0–M2 incomplete/in progress; M3–M9 not started.
+completion. Current progress: M0/M1 incomplete; M2 blocked on workspace MCP
+connection clarification; M3–M9 not started.
 Independent local M1 and read-only model discovery proceeded while human account
 and hosting setup was pending; later workflow milestones remain gated.

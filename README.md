@@ -44,7 +44,11 @@ and the real platform storage mount are NOT verified.
   Generation/structured output and actual free quota remain unverified.
   No Groq account is needed. Model adapter is not implemented yet.
 - fastn: create a workspace at https://app.fastn.ai and connect controlled Gmail/GitHub.
-  Store credentials/project ID privately; discovery and permitted tool mapping remain pending.
+  Saved-key discovery currently returns a [connection error](docs/evidence/20261017-fastn-discovery.md).
+  Confirm the workspace MCP URL and connected accounts; tool/project mapping remains pending.
+  Replay read-only discovery with `.venv\Scripts\python.exe scripts/check-fastn-access.py`.
+  `FASTN_MCP_URL` optionally overrides the documented hosted endpoint with a verified
+  HTTPS fastn.ai URL; credentials belong in headers, never a URL query.
 - GitHub origin is already configured. No specification issue will be published.
 
 ## Start here
