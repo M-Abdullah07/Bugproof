@@ -4,6 +4,9 @@ Status: **planned, not implemented**. Execution is HELD (DEC-01).
 Read the [specification](docs/specs/bugproof.md) for full behavioral contracts,
 [Decisions.md](Decisions.md) for rationale and [ACCEPTANCE.md](ACCEPTANCE.md)
 for proof obligations. This map explains ownership; it adds no product scope.
+For ordered implementation cards and operator explanations, use the
+[implementation plan](docs/implementation-plan.md). Its proposed routes and commands
+become executable references only when implemented and verified.
 
 ## Workflow and authority
 

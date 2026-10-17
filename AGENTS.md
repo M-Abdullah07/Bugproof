@@ -17,6 +17,8 @@ unpublished as an issue. Keep it in the repository unless directly instructed ot
 - Before changing a decision or reopening a tradeoff, read `Decisions.md`.
 - Before implementation planning or editing source boundaries, read `Architecture.md`.
   Its source/test paths are planned until code exists; create no placeholder modules during the hold.
+- For milestone execution or a build handoff, read `docs/implementation-plan.md`;
+  follow its dependencies and exit checks after explicit resume, recording actual evidence.
 - Before tests, acceptance claims or verification work, read `ACCEPTANCE.md`.
   Update affected IDs with actual replay commands, commit/build identity and observed evidence;
   mark prior evidence stale after relevant changes. Never treat a provider double as live proof.

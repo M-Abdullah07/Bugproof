@@ -13,6 +13,7 @@ all demonstration reports will be synthetic and explicitly labeled.
 | --- | --- |
 | Agent instructions and permissions | [AGENTS.md](AGENTS.md) |
 | Exact behavior and scope | [Specification](docs/specs/bugproof.md) |
+| Step-by-step build order, exit checks and explanations | [Implementation plan](docs/implementation-plan.md) |
 | Decisions and reasons | [Decisions.md](Decisions.md) |
 | Ownership, dependencies and planned source map | [Architecture.md](Architecture.md) |
 | Acceptance claims, run status and evidence | [ACCEPTANCE.md](ACCEPTANCE.md) |
