@@ -32,7 +32,7 @@ instructions take precedence; record any changed decision and update affected do
 
 | Gate | Needed proof | If unavailable |
 | --- | --- | --- |
-| fastn connector capabilities and accounts | [Saved-key MCP connection returns -32603](docs/evidence/20261017-fastn-discovery.md); correct workspace endpoint/connection setup needs clarification | Stop dependent work; no fake integration or bypass |
+| fastn connector capabilities and accounts | [User-corrected mcp.fastn.dev endpoint returns HTTP 401](docs/evidence/20261017-fastn-discovery.md); saved Bearer credential not accepted; Gmail/GitHub connection reported by user, unverified through API | Resolve credential acceptance; no fake integration or bypass |
 | Alternate Clouds + storage | Participant reports account with $5 balance; actual deployment and storage survival unverified | Resolve hosting/storage before recovery claims |
 | Model and controlled Gmail credentials | [Gemini model listing verified](docs/evidence/20261017-gemini-model-access.md); selected model available; generation/quota and fastn/Gmail setup unverified | Keep credentials outside Git; no full-workflow success claim yet |
 | Event fastn rule | Organizer clarification | Retain fastn centrally pending clarification |

@@ -450,6 +450,6 @@ evidence supports A01–A17, the human can change permitted effects, partial/unc
 states recover honestly, and required submission artifacts are accessible before
 freeze. This plan being written, a green unit test, or a polished UI is not that
 completion. Current progress: M0/M1 incomplete; M2 blocked on workspace MCP
-connection clarification; M3–M9 not started.
+credential acceptance (HTTP 401 at user-provided endpoint); M3–M9 not started.
 Independent local M1 and read-only model discovery proceeded while human account
 and hosting setup was pending; later workflow milestones remain gated.

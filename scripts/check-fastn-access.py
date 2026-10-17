@@ -17,22 +17,30 @@ async def main():
     if not values.get("FASTN_API_KEY"):
         print(json.dumps({"configured": False}))
         return 2
-    endpoint = values.get("FASTN_MCP_URL") or "https://mcp.live.fastn.ai/shttp"
+    endpoint = values.get("FASTN_MCP_URL") or "https://mcp.fastn.dev"
     parsed = urlsplit(endpoint)
     if (parsed.scheme != "https" or not parsed.hostname
-            or not (parsed.hostname == "fastn.ai" or parsed.hostname.endswith(".fastn.ai"))
+            or not (parsed.hostname == "mcp.fastn.dev" or parsed.hostname == "fastn.ai"
+                    or parsed.hostname.endswith(".fastn.ai"))
             or parsed.username or parsed.password or parsed.query or parsed.fragment):
         print(json.dumps({"configured": True, "configuration_error":
-                          "Use an HTTPS fastn.ai MCP endpoint without URL credentials or query secrets"}))
+                          "Use the approved HTTPS fastn MCP endpoint without URL credentials or query secrets"}))
         return 2
     headers = {"Authorization": "Bearer " + values["FASTN_API_KEY"]}
     if values.get("FASTN_PROJECT_ID"):
         headers["x-project-id"] = values["FASTN_PROJECT_ID"]
     logging.disable(logging.CRITICAL)
     phase = "connect"
+    http_statuses = []
+
+    async def observe_response(response):
+        http_statuses.append(response.status_code)
+
     try:
         async with asyncio.timeout(35):
-            async with httpx2.AsyncClient(headers=headers, timeout=20) as http:
+            async with httpx2.AsyncClient(
+                headers=headers, timeout=20, event_hooks={"response": [observe_response]}
+            ) as http:
                 transport = streamable_http_client(
                     endpoint, http_client=http
                 )
@@ -66,7 +74,8 @@ async def main():
                     message = message.replace(value, "[REDACTED]")
             return [{"type": type(error).__name__, "code": getattr(error, "code", None),
                      "message": message[:900]}]
-        print(json.dumps({"authenticated_session": False, "phase": phase, "errors": leaf_errors(exc)}))
+        print(json.dumps({"authenticated_session": False, "phase": phase,
+                          "http_statuses": http_statuses, "errors": leaf_errors(exc)}))
         return 1
 
 

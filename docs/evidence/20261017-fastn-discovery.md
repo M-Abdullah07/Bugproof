@@ -46,3 +46,23 @@ temporary data and no external services. The SDK installs httpx2, removing the
 previous TestClient compatibility warning in this run. The lock preserves a
 Windows marker for pywin32 so it is not required on Linux. The Docker build and
 deployed storage remain unverified.
+
+## Follow-up: participant-supplied endpoint
+
+The participant specified `https://mcp.fastn.dev` with Bearer authentication and
+reported Gmail/GitHub connected in that workspace. The approved endpoint was
+saved privately and added explicitly to the client's allowed hosts; the
+organization slug was not substituted for a project ID.
+
+SDK connection again returned -32603. A direct read-only JSON-RPC initialize
+request using the saved key in the Authorization header identified the HTTP
+result: **401**, JSON `{"error":"unauthorized"}`. Key-format checks confirmed
+the value was not accidentally prefixed with `Bearer ` or `FASTN_API_KEY=`.
+No key value was printed. No connection, project listing, Gmail read or GitHub
+write was established. The first error was therefore insufficiently diagnostic;
+the CLI now records HTTP status codes without logging headers.
+
+Current blocker: verify the credential type, active status, organization and
+environment expected by this workspace's MCP endpoint. A separate generated MCP
+Bearer credential may be required; that possibility is not yet confirmed.
+Use the replay command above with FASTN_MCP_URL set to the participant's endpoint.
