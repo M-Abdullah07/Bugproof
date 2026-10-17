@@ -3,9 +3,6 @@
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{% block title %}BugProof{% endblock %}</title>
 <link rel="stylesheet" href="/static/app.css"></head>
-<body><div class="shell">
-<header><a class="brand" href="/cases">BugProof<span>Support → evidence → decision</span></a>
-{% block account %}{% endblock %}</header>
-<main>{% block content %}{% endblock %}</main>
-<footer>Controlled test environment · Synthetic reports and order records</footer>
-</div></body></html>
+<body><a class="skip-link" href="#workspace">Skip to workspace</a>
+<header class="app-header"><div class="header-inner"><a class="brand" href="/cases"><span class="brand-mark" aria-hidden="true">b.</span><span class="brand-name">BugProof<span>THE SUPPORT INVESTIGATION WORKSPACE</span></span></a><div class="header-account"><span class="environment"><span aria-hidden="true">●</span> Controlled demo</span>{% block account %}{% endblock %}</div></div></header>
+<div class="shell"><main id="workspace">{% block content %}{% endblock %}</main><footer><span>BugProof / Human judgment. Observable evidence.</span><span>Isolated test API · Synthetic reports</span></footer></div></body></html>

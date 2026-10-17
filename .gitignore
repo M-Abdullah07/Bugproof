@@ -20,3 +20,6 @@ __pycache__/
 *.sqlite3-*
 build/
 dist/
+
+output/pdf/
+tmp/pdfs/
