@@ -39,8 +39,9 @@ and the real platform storage mount are NOT verified.
 ## Accounts needed next
 
 - Alternate Clouds: participant reports an account with $5 balance; deployment not tested.
-- Gemini: participant already has an API key; set `GEMINI_API_KEY` privately.
-  Verify available model/structured output and free quota before live calls.
+- Gemini: private key and `gemini-3.8-flash` model availability are verified via
+  [read-only discovery](docs/evidence/20261017-gemini-model-access.md).
+  Generation/structured output and actual free quota remain unverified.
   No Groq account is needed. Model adapter is not implemented yet.
 - fastn: create a workspace at https://app.fastn.ai and connect controlled Gmail/GitHub.
   Store credentials/project ID privately; discovery and permitted tool mapping remain pending.

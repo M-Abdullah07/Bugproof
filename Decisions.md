@@ -34,7 +34,7 @@ instructions take precedence; record any changed decision and update affected do
 | --- | --- | --- |
 | fastn connector capabilities and accounts | Intake, issue create/read-back, same-thread reply, reconciliation behavior | Stop dependent work and explicitly revise; no fake integration |
 | Alternate Clouds + storage | Participant reports account with $5 balance; actual deployment and storage survival unverified | Resolve hosting/storage before recovery claims |
-| Model and controlled Gmail credentials | Participant has Gemini key; configured key/model/quota not yet verified; fastn/Gmail setup pending | Keep credentials outside Git; no live success claim yet |
+| Model and controlled Gmail credentials | [Gemini model listing verified](docs/evidence/20261017-gemini-model-access.md); selected model available; generation/quota and fastn/Gmail setup unverified | Keep credentials outside Git; no full-workflow success claim yet |
 | Event fastn rule | Organizer clarification | Retain fastn centrally pending clarification |
 
 Demand and time savings remain unvalidated. A successful synthetic demo does not
