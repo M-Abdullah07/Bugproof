@@ -37,7 +37,7 @@ jobs:
           docker run --rm --entrypoint python "$IMAGE:$GITHUB_SHA" -c 'from pathlib import Path; import bugproof.web, bugproof_lab.api; assert not Path("/app/.env").exists()'
           docker run --rm --entrypoint python "$IMAGE:$GITHUB_SHA" -m pip check
           docker run -d --name bugproof-ci -p 127.0.0.1:8000:8000 --mount type=volume,source=bugproof-ci-data,target=/data -e BUGPROOF_DEMO_PASSWORD=controlled-ci-password -e BUGPROOF_SESSION_SECRET=controlled-ci-session-secret-over-32-characters -e BUGPROOF_LAB_SECRET=controlled-ci-lab-secret "$IMAGE:$GITHUB_SHA"
-          curl --fail --retry 15 --retry-connrefused --retry-delay 1 http://127.0.0.1:8000/healthz
+          curl --fail --max-time 5 --retry 15 --retry-all-errors --retry-connrefused --retry-delay 1 http://127.0.0.1:8000/healthz
       - name: Publish without application credentials
         env:
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
