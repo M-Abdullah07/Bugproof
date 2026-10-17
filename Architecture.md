@@ -93,6 +93,8 @@ Manifest, startup, test command, environment example and Dockerfile now exist;
 verified local commands are in README. No deployed URL exists. Seven foundation
 tests in `tests/test_foundation.py` prove only local auth/storage behavior; the
 Docker build, platform mount and full acceptance remain unverified.
+Local development runs Python directly (DEC-17). Keep existing container packaging
+for a remote build if required; installing Docker locally is not a milestone.
 
 Hosting must honor platform PORT and explicit Alternate Clouds Rebuild -> Deploy.
 Prove storage survival on that host. Provider capabilities, credentials and

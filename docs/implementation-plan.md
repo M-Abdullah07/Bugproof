@@ -194,6 +194,13 @@ minimal templates, `.env.example`, `.gitignore`, deployment/startup configuratio
    mistake a background task object for a durable queue.
 5. Bind the host's PORT; use the actual Alternate Clouds startup/deploy interface.
    Configure environment, then explicit Rebuild -> Deploy. Check health and login.
+   Skip local Docker installation/builds (DEC-17). Current official hosting docs
+   describe image-based deployment; use remote packaging if that is the actual
+   account's route. GitHub Actions can build images without local Docker, but no
+   workflow has been configured or run. Preserve the existing Dockerfile until
+   a supported alternative is verified. Sources:
+   https://docs.alternatefutures.ai/guides/how-deployments-work and
+   https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images.
 
 **Verify:** unauthenticated mutations fail; authenticated empty page works;
 store/read a harmless synthetic record across local restart. Record the first

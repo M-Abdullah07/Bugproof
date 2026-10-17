@@ -25,6 +25,8 @@ instructions take precedence; record any changed decision and update affected do
 | DEC-14 | GitHub is the project tracker; keep the specification out of GitHub Issues | Repository documentation is sufficient; avoids unnecessary public issue publication | Participant explicitly chose Leave unpublished after approval-review rejection |
 | DEC-15 | No delegated agents without direct user authorization; local-only skills/state | Maintains the participant's working constraints | AGENTS.md / direct instructions |
 | DEC-16 | Resume implementation; stop and ask at material ambiguity; notify user when a new account is needed | Enables building while retaining user alignment and account control | October 17 direct instruction: "Let's start implementation using all the material and plans that we have" |
+| DEC-17 | Skip local Docker installation/builds; retain the existing Dockerfile for remote packaging if hosting requires it | Saves workstation setup time without assuming Alternate Clouds supports a Python process directly | Participant asked to avoid Docker overhead; local Python already runs; remote build/deployment remains unverified |
+| DEC-18 | Use the participant's existing Gemini API access instead of requiring a Groq signup | Avoids unnecessary account setup; verify available structured-output model and actual quota before live use | Participant reported a Gemini key; assistant accepted it as suitable |
 
 ## Unverified dependencies
 
@@ -32,7 +34,7 @@ instructions take precedence; record any changed decision and update affected do
 | --- | --- | --- |
 | fastn connector capabilities and accounts | Intake, issue create/read-back, same-thread reply, reconciliation behavior | Stop dependent work and explicitly revise; no fake integration |
 | Alternate Clouds + storage | Participant reports account with $5 balance; actual deployment and storage survival unverified | Resolve hosting/storage before recovery claims |
-| Model and controlled Gmail credentials | Groq recommended for strict-schema free-tier calls; account/key pending; fastn/Gmail setup needed | Keep credentials outside Git; no live success claim yet |
+| Model and controlled Gmail credentials | Participant has Gemini key; configured key/model/quota not yet verified; fastn/Gmail setup pending | Keep credentials outside Git; no live success claim yet |
 | Event fastn rule | Organizer clarification | Retain fastn centrally pending clarification |
 
 Demand and time savings remain unvalidated. A successful synthetic demo does not

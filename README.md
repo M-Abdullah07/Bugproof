@@ -32,13 +32,16 @@ environment; use `BUGPROOF_ENV=production` for HTTPS-only session cookies on the
 This covers only the local foundation. Windows Codex sandbox restrictions required
 the test runner to execute with local escalation; pytest temporary data stays
 under `.tools/pytest-tmp`. One upstream TestClient/httpx deprecation warning is known.
-Dockerfile is prepared, but its build and real storage mount are NOT verified.
+Local development uses Python directly; Docker Desktop/local builds are skipped.
+The existing Dockerfile is retained for remote packaging if needed. Its build
+and the real platform storage mount are NOT verified.
 
 ## Accounts needed next
 
 - Alternate Clouds: participant reports an account with $5 balance; deployment not tested.
-- Groq: recommended working default `openai/gpt-oss-120b`; create an account/API key
-  at https://console.groq.com and set `GROQ_API_KEY` privately. Adapter not implemented yet.
+- Gemini: participant already has an API key; set `GEMINI_API_KEY` privately.
+  Verify available model/structured output and free quota before live calls.
+  No Groq account is needed. Model adapter is not implemented yet.
 - fastn: create a workspace at https://app.fastn.ai and connect controlled Gmail/GitHub.
   Store credentials/project ID privately; discovery and permitted tool mapping remain pending.
 - GitHub origin is already configured. No specification issue will be published.
