@@ -1,0 +1,50 @@
+name: Build demo image
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - requirements.lock
+      - pyproject.toml
+      - src/**
+      - scripts/container-entrypoint.py
+      - .github/workflows/image.yml
+
+concurrency:
+  group: bugproof-image
+  cancel-in-progress: false
+
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: write
+    env:
+      IMAGE: ghcr.io/m-abdullah07/bugproof
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: false
+      - name: Build the existing application image
+        run: |
+          docker build --label org.opencontainers.image.source=https://github.com/M-Abdullah07/Bugproof --label org.opencontainers.image.revision=$GITHUB_SHA -t "$IMAGE:$GITHUB_SHA" -t "$IMAGE:demo" .
+      - name: Verify packaging and mounted-volume startup
+        run: |
+          docker run --rm --entrypoint python "$IMAGE:$GITHUB_SHA" -c 'from pathlib import Path; import bugproof.web, bugproof_lab.api; assert not Path("/app/.env").exists()'
+          docker run --rm --entrypoint python "$IMAGE:$GITHUB_SHA" -m pip check
+          docker run -d --name bugproof-ci -p 127.0.0.1:8000:8000 --mount type=volume,source=bugproof-ci-data,target=/data -e BUGPROOF_DEMO_PASSWORD=controlled-ci-password -e BUGPROOF_SESSION_SECRET=controlled-ci-session-secret-over-32-characters -e BUGPROOF_LAB_SECRET=controlled-ci-lab-secret "$IMAGE:$GITHUB_SHA"
+          curl --fail --retry 15 --retry-connrefused --retry-delay 1 http://127.0.0.1:8000/healthz
+      - name: Publish without application credentials
+        env:
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          printf '%s' "$REGISTRY_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker push "$IMAGE:$GITHUB_SHA"
+          docker push "$IMAGE:demo"
+      - name: Container logs
+        if: failure()
+        run: docker logs bugproof-ci || true
