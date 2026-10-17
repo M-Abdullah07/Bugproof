@@ -25,19 +25,20 @@ instructions take precedence; record any changed decision and update affected do
 | DEC-14 | GitHub is the project tracker; keep the specification out of GitHub Issues | Repository documentation is sufficient; avoids unnecessary public issue publication | Participant explicitly chose Leave unpublished after approval-review rejection |
 | DEC-15 | No delegated agents without direct user authorization; local-only skills/state | Maintains the participant's working constraints | AGENTS.md / direct instructions |
 | DEC-16 | Resume implementation; stop and ask at material ambiguity; notify user when a new account is needed | Enables building while retaining user alignment and account control | October 17 direct instruction: "Let's start implementation using all the material and plans that we have" |
-| DEC-17 | Skip local Docker installation/builds; retain the existing Dockerfile for remote packaging if hosting requires it | Saves workstation setup time without assuming Alternate Clouds supports a Python process directly | Participant asked to avoid Docker overhead; local Python already runs; remote build/deployment remains unverified |
+| DEC-17 | Skip local Docker installation/builds; retain the existing Dockerfile for remote packaging if hosting requires it | Saves workstation setup time without assuming Alternate Clouds supports a Python process directly | Participant asked to avoid Docker overhead; local Python already runs; remote build/deployment now verified in the deployment record |
 | DEC-18 | Use the participant's existing Gemini API access instead of requiring a Groq signup | Avoids unnecessary account setup; verify available structured-output model and actual quota before live use | Participant reported a Gemini key; assistant accepted it as suitable |
 | DEC-19 | Use OAuth for mcp.fastn.dev; execute exact discovered workspace connector actions | Dashboard API keys repeatedly received 401; official gateway metadata documents OAuth; live workspace/provider reads now succeed | Participant completed both browser sign-ins; verified live evidence |
 | DEC-20 | Controlled live tests may send self-addressed synthetic Gmail reports/replies and marked issues in M-Abdullah07/Bugproof | Provides actual integration proof within owned destinations | Participant explicitly chose these controlled destinations on October 17 |
 | DEC-21 | Upload demo Gemini/OAuth/operator/lab credentials through Alternate Clouds despite its plaintext-to-selected-provider notice | Required for this approved demo; credentials remain absent from source/Git | Participant explicitly approved this credential transmission after seeing the platform notice |
+| DEC-22 | Build the image remotely in GitHub Actions and deploy that immutable image on Alternate Clouds | The platform's own builder failed before code execution because cache capacity was exhausted; remote image build/startup succeeded | Implementation choice within the approved deployment and no-local-Docker constraints; hosting remains Alternate Clouds |
 
-## Unverified dependencies
+## Dependency gates
 
 | Gate | Needed proof | If unavailable |
 | --- | --- | --- |
-| fastn connector capabilities and accounts | [OAuth and active googleGmail/github metadata verified](docs/evidence/20261017-fastn-discovery.md); actual operations, refresh and deployed provisioning remain unverified | Prove exact connector actions and recovery; no fake integration or bypass |
-| Alternate Clouds + storage | Participant reports account with $5 balance; actual deployment and storage survival unverified | Resolve hosting/storage before recovery claims |
-| Model and controlled Gmail credentials | [Gemini model listing verified](docs/evidence/20261017-gemini-model-access.md); selected model available; generation/quota and fastn/Gmail setup unverified | Keep credentials outside Git; no full-workflow success claim yet |
+| fastn connector capabilities and accounts | [OAuth and active googleGmail/github metadata verified](docs/evidence/20261017-fastn-discovery.md); actual operations, refresh and deployed provisioning PASS in [deployment evidence](docs/evidence/20261017-deployment.md) | Prove exact connector actions and recovery; no fake integration or bypass |
+| Alternate Clouds + storage | PASS: live HTTPS and hosted process restart preserve state; [evidence](docs/evidence/20261017-deployment.md) | Resolve hosting/storage before recovery claims |
+| Model and controlled Gmail credentials | [Gemini model listing verified](docs/evidence/20261017-gemini-model-access.md); selected model available; actual structured generation and connected Gmail operations PASS; future free quota not guaranteed | Keep credentials outside Git; no full-workflow success claim yet |
 | Event fastn rule | Organizer clarification | Retain fastn centrally pending clarification |
 
 Demand and time savings remain unvalidated. A successful synthetic demo does not

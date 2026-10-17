@@ -1,8 +1,8 @@
 # BugProof implementation plan
 
 Prepared October 17, 2026, Asia/Karachi. **Implementation resumed by the participant
-on October 17 (DEC-16).** Local M1 foundation implemented/tested; first deployment
-and M0/M2 account checks remain unfinished. Stop for material ambiguity and account needs.
+on October 17 (DEC-16).** M0–M8 are complete with the controlled workflow deployed and verified;
+M9 participant video/PDF/social artifacts remain outstanding. Stop for material ambiguity and account needs.
 This plan does not authorize delegated agents or account creation on the user's behalf.
 
 Behavior comes from the [specification](specs/bugproof.md); rationale from
@@ -73,14 +73,14 @@ timeboxes, not validated duration estimates or a promise of completion.
 | ID | Milestone | Depends on | Timebox | Status / evidence |
 | --- | --- | --- | ---: | --- |
 | M0 | Resume and preflight | Direct participant resume | 5 min | DONE / accounts connected; controlled destinations and hosting credential transfer approved |
-| M1 | Runnable authenticated foundation and first deployment | M0 | 25 min | IN_PROGRESS / [local foundation](evidence/20261017-foundation.md); deployment pending |
-| M2 | Prove integrations and persistent storage | M1 | 35 min | IN_PROGRESS / [fastn OAuth and active provider metadata verified](evidence/20261017-fastn-discovery.md); actual operations, refresh and Gemini generation verified; hosting/storage pending |
-| M3 | Actual faulty/corrected lab and bounded runner | M2 | 40 min | IN_PROGRESS / local implementation and proof complete; host gate pending - [evidence](evidence/20261017-workflow.md) |
-| M4 | Gmail intake and grounded AI investigation | M3 | 40 min | IN_PROGRESS / local implementation and proof complete; host gate pending - [evidence](evidence/20261017-workflow.md) |
-| M5 | Human review and exact-action approval | M4 | 30 min | IN_PROGRESS / local implementation and proof complete; host gate pending - [evidence](evidence/20261017-workflow.md) |
-| M6 | Close the real issue + reply workflow | M5 | 45 min | IN_PROGRESS / local implementation and proof complete; host gate pending - [evidence](evidence/20261017-workflow.md) |
-| M7 | Prove concurrency, partial failure and restart | M6 | 30 min | IN_PROGRESS / local implementation and proof complete; host gate pending - [evidence](evidence/20261017-workflow.md) |
-| M8 | Deployed acceptance and operator rehearsal | M7 | 20 min | NOT_STARTED / — |
+| M1 | Runnable authenticated foundation and first deployment | M0 | 25 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
+| M2 | Prove integrations and persistent storage | M1 | 35 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
+| M3 | Actual faulty/corrected lab and bounded runner | M2 | 40 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
+| M4 | Gmail intake and grounded AI investigation | M3 | 40 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
+| M5 | Human review and exact-action approval | M4 | 30 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
+| M6 | Close the real issue + reply workflow | M5 | 45 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
+| M7 | Prove concurrency, partial failure and restart | M6 | 30 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
+| M8 | Deployed acceptance and operator rehearsal | M7 | 20 min | DONE / [workflow proof](evidence/20261017-workflow.md) + [cloud/restart proof](evidence/20261017-deployment.md) |
 | M9 | Video, PDF, access checks and freeze record | M8 for final proof; prepare artifact structure earlier | 40 min | NOT_STARTED / — |
 
 Total execution budget: 310 minutes, excluding this planning, external access
@@ -449,11 +449,7 @@ Complete means the approved workflow is deployed on Alternate Clouds, actual
 evidence supports A01–A17, the human can change permitted effects, partial/uncertain
 states recover honestly, and required submission artifacts are accessible before
 freeze. This plan being written, a green unit test, or a polished UI is not that
-completion. Current progress: M0/M1 incomplete; M2 in progress with workspace OAuth
-and provider metadata verified; actual operations/hosting pending; M3-M7 implemented/tested locally; cloud gates and M8-M9 pending.
-Independent local M1 and read-only model discovery proceeded while human account
-and hosting setup was pending; later workflow milestones remain gated.
-
-Execution note: local workflow proceeded while the participant completed cloud
-setup. M2 hosting/storage remains open; local proof does not mark any dependent
-deployed milestone complete. Prioritize the real deployment next.
+completion. Current progress: **M0–M8 DONE** for the controlled MVP. Actual
+cloud workflow, 36 tests, browser rehearsal and hosted container restart are
+recorded in ACCEPTANCE.md. **M9 remains NOT_STARTED** for participant video,
+submission PDF, social/Discord evidence and final freeze/access checks.

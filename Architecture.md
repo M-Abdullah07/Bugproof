@@ -1,6 +1,7 @@
 # BugProof architecture
 
-Status: **workflow implemented locally; cloud deployment verification pending**. Execution resumed under DEC-16.
+Status: **workflow deployed and verified on Alternate Clouds**. Execution resumed under DEC-16.
+Hosting/storage and container restart evidence: [deployment record](docs/evidence/20261017-deployment.md).
 Read the [specification](docs/specs/bugproof.md) for full behavioral contracts,
 [Decisions.md](Decisions.md) for rationale and [ACCEPTANCE.md](ACCEPTANCE.md)
 for proof obligations. This map explains ownership; it adds no product scope.
@@ -37,7 +38,7 @@ Source text, API responses and model output are untrusted data. Registered
 targets, recipients and repositories come from server configuration. The model
 cannot choose arbitrary destinations, run generated code or authorize publication.
 
-## Planned code ownership
+## Code ownership
 
 The application, five workflow boundaries, fastn/OAuth adapter and lab now exist.
 The table maps their ownership. Tests for workflow and publication currently share
@@ -90,11 +91,11 @@ manual reconciliation, rather than a blind retry or false success.
 ## Build and runtime discovery
 
 Manifest, startup, test command, environment example and Dockerfile now exist;
-verified local commands are in README. No deployed URL exists yet. Foundation
-and actual-TCP-lab workflow tests pass; current counts and exact proof are in
-ACCEPTANCE.md. The cloud build, platform mount and full deployed smoke remain unverified.
-Local development runs Python directly (DEC-17). Keep existing container packaging
-for a remote build if required; installing Docker locally is not a milestone.
+verified commands and the live URL are in README. Foundation and actual-TCP-lab
+workflow tests pass; exact proof is in ACCEPTANCE.md. The remote image build,
+platform mount, deployed smoke and hosted container restart passed.
+Local development runs Python directly (DEC-17). GitHub Actions builds the image;
+Alternate Clouds hosts it (DEC-22). Installing Docker locally is not a milestone.
 
 Hosting must honor platform PORT and explicit Alternate Clouds Rebuild -> Deploy.
 Prove storage survival on that host. Provider capabilities, credentials and

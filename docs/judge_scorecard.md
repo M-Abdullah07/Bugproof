@@ -2,7 +2,9 @@
 
 Rubric and event constraints below were supplied by the participants; they are
 not independently reconfirmed here. Total: **100 points**. No score is awarded
-or predicted. Current product evidence: NOT_RUN; implementation resumed under DEC-16.
+or predicted. Current controlled-MVP evidence: A01–A17 PASS at their stated boundaries,
+including actual Alternate Clouds workflow and hosted process restart. Submission
+artifacts are separate; demand/time savings remain unvalidated.
 Use [ACCEPTANCE.md](../ACCEPTANCE.md) for current results and runnable evidence,
 not a second copy of the pass/fail ledger.
 
@@ -36,19 +38,19 @@ five minutes**: problem/value, implementation/authority, demo/proof, limits/resu
 
 ## Eligibility and submission evidence
 
-All items below are currently unverified/not prepared unless linked later.
+Completed product artifacts are linked below; participant materials remain outstanding.
 These participant artifacts are separate from product acceptance passes.
 
 | Requirement supplied by participants | Required artifact / check | Current evidence |
 | --- | --- | --- |
 | Two-student team | Team name; both names, emails and registered Discord usernames; one WhatsApp contact | — |
-| Mandatory Alternate Clouds | Accessible live deployment and deployment screenshot; run until closing | — |
-| fastn discrepancy | Retain fastn centrally; organizer clarification still outstanding | — |
+| Mandatory Alternate Clouds | Accessible live deployment and deployment screenshot; run until closing | [Live/build proof](evidence/20261017-deployment.md), [screenshot](evidence/images/alternate-clouds.png); keep running |
+| fastn discrepancy | Retain fastn centrally; organizer clarification still outstanding | Actual fastn MCP Gmail/GitHub workflow verified; rule clarification remains open |
 | Submission PDF | Project/pitch, problem/users, meaningful human step, stack, live URL, accessible repository or n8n export | — |
 | Demo access and video | Dedicated login if needed; accessible 2–3 minute video link | — |
 | Discord evidence | Both memberships, required names/event channel; watch submission instructions and updates | — |
 | Social evidence | Participant-written English original LinkedIn post plus teammate reshare; required hashtags below | — |
-| Credit and secrets | Third-party credits; repository/artifacts contain no credentials | — |
+| Credit and secrets | Third-party credits; repository/artifacts contain no credentials | [Credits](../CREDITS.md); private env/token paths ignored; staged secret scan before push |
 | Final freeze | Submit by October 17, 2026, 12:45 PM PKT; target noon; record final source/deployment; no subsequent code/deploy edits | — |
 | Finalist slides | Prepare beforehand; PDF before 4 PM October 17; top ten expected around 3:30 PM | — |
 
@@ -65,3 +67,5 @@ Link current acceptance records and participant artifacts; do not invent scores.
 After a scope change, re-evaluate which criterion loses proof before adding work.
 When a claim is not supported, narrow the narration or obtain evidence. Verify
 links/access from the judge's perspective before the submission freeze.
+
+Operator handoff and recording sequence: [demo runbook](demo-runbook.md).

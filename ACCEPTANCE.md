@@ -1,9 +1,9 @@
 # BugProof acceptance and evidence
 
-**Full-product verdict: NOT RUN on the mandatory host.** Local workflow
-implementation has 35 passing tests, real Gemini/fastn escalation and clarification,
-corrected replay, OAuth refresh and marker-search proof. A15 host restart and A16
-Alternate Clouds smoke remain outstanding. Scope approval is not product evidence.
+**Controlled MVP verdict: PASS on Alternate Clouds.** There are 36 passing tests,
+real Gemini/fastn escalation and clarification, corrected replay, OAuth refresh,
+and hosted container restart proof. See the [deployment record](docs/evidence/20261017-deployment.md).
+Physical provider reboot/migration and commercial demand remain unverified.
 The [specification](docs/specs/bugproof.md) defines behavior; evidence below records
 what ran and its limits. Local browser rehearsal is not commercial user validation.
 
@@ -28,8 +28,8 @@ separately: deterministic / live / manual. No numeric score is inferred.
 
 ## Acceptance ledger
 
-PASS below is local deterministic/live/manual proof in the linked record.
-Cloud integration and host restart remain separate outstanding requirements.
+PASS below combines the specified deterministic/live/manual boundaries. Controlled
+provider failure tests are distinct from the separately recorded real cloud smoke.
 
 | ID | Claim / required observable result | Verification boundary | Status | Runnable evidence |
 | --- | --- | --- | --- | --- |
@@ -47,9 +47,9 @@ Cloud integration and host restart remain separate outstanding requirements.
 | A12 | Provider success followed by timeout reconciles existing identity/marker, or visibly becomes uncertain before another send | Fault-injected publication tests + live capability check | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
 | A13 | Successful issue survives email failure; retry only unfinished eligible reply, preserve issue/link, declare complete only after both verified | Publication tests | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
 | A14 | Imported new source evidence invalidates stale approval; between issue and reply it preserves issue and stops remaining writes | Publication tests with controlled timing | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
-| A15 | Restart preserves completed provider IDs; ambiguous attempts reconcile, claim expiry never permits blind resend; interrupted experiments get fresh run/fixture | Process restart + durable SQLite + actual host restart | NOT_RUN | [Local app reconstruction subset](docs/evidence/20261017-foundation.md); no provider/host restart proof |
-| A16 | On Alternate Clouds, real fastn intake -> human-approved GitHub create/read-back -> original-thread Gmail reply/read-back works in owned accounts | Separately enabled deployed live smoke | NOT_RUN | — |
-| A17 | Operator can inspect source/evidence, edit expectation, reject/approve and recover visibly without reading raw JSON; refresh/reopen retains state | Browser rehearsal with explicit steps and current build | PASS | [Workflow proof and replay](docs/evidence/20261017-workflow.md) |
+| A15 | Restart preserves completed provider IDs; ambiguous attempts reconcile, claim expiry never permits blind resend; interrupted experiments get fresh run/fixture | Actual hosted container restart + deterministic failure tests; physical host reboot excluded | PASS | [Hosted restart](docs/evidence/20261017-deployment.md); [adverse cases](docs/evidence/20261017-workflow.md) |
+| A16 | On Alternate Clouds, real fastn intake -> human-approved GitHub create/read-back -> original-thread Gmail reply/read-back works in owned accounts | Separately enabled deployed live smoke; scripted preauthorized approval | PASS | [Deployed escalation, clarification and corrected replay](docs/evidence/20261017-deployment.md) |
+| A17 | Operator can inspect source/evidence, edit expectation, reject/approve and recover visibly without reading raw JSON; refresh/reopen retains state | Local browser editing/rejection plus deployed workspace/login inspection | PASS | [Browser rehearsal](docs/evidence/20261017-workflow.md); [deployed screenshot](docs/evidence/images/bugproof-app.png) |
 
 A01–A16 correspond in order to the specification's acceptance table. A17 makes
 its existing workspace contract directly reviewable; it adds no new feature.

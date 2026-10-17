@@ -396,3 +396,21 @@ def test_unauthenticated_mutation_never_approves_or_publishes(system):
         for op in ('approve','publish','reconcile','investigate'):
             assert visitor.post(f'/api/cases/{cid}/{op}',json={}).status_code==403
     assert not p.issues and not p.messages
+
+
+def test_interrupted_investigation_is_visible_after_restart_and_uses_fresh_fixture(system):
+    client,p,model,runner,settings=system
+    cid,old=investigated(client)
+    storage=Storage(settings.database_path)
+    storage.save_state(cid,{'status':'investigating'},old['version'],'investigation_started')
+    with TestClient(create_app(settings,integrations=p,proposer=model,runner=runner)) as restarted:
+        token=restarted.get('/login').text.split('name="csrf_token" value="')[1].split('"')[0]
+        restarted.post('/login',data={'csrf_token':token,'password':settings.demo_password})
+        restarted.headers['x-csrf-token']=restarted.get('/api/session').json()['csrf']
+        interrupted=case(restarted,cid)
+        assert interrupted['state']['status']=='execution_error'
+        assert 'evidence' not in interrupted['state']
+        replay=operate(restarted,cid,'investigate',build='faulty').json()
+        assert replay['state']['evidence']['fixture']!=old['state']['evidence']['fixture']
+        assert replay['state']['evidence']['run_id']!=old['state']['evidence']['run_id']
+    assert not p.issues and not p.messages

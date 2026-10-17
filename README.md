@@ -3,13 +3,20 @@
 A support report becomes evidence a developer can act on, followed by a
 human-approved engineering handoff and reporter reply.
 
-**Implemented locally: the complete controlled workflow.**
+**Live on Alternate Clouds:** https://alternate-graceful-plain-7359-docker-app.alternatefutures.ai
+
+Open `/login`; the original workspace's private `.env` contains
+`BUGPROOF_DEMO_PASSWORD`. Share demo access with your teammate/judges privately.
+Start with the [demo runbook](docs/demo-runbook.md).
+
+**Implemented and verified: the complete controlled workflow.**
 Gmail intake through fastn, grounded Gemini interpretation, real HTTP experiments,
 human expectation/disposition editing, exact approval, GitHub issue + thread reply,
 read-back and durable uncertain/partial recovery now exist.
-Local live smoke completed an escalation and clarification; corrected replay
-produced one order while the faulty service produced two. Cloud deployment and
-host restart proof remain pending. See [acceptance evidence](ACCEPTANCE.md).
+Deployed live smoke completed an escalation and clarification; corrected replay
+produced one order while the faulty service produced two. A hosted container
+restart preserved completed actions and approval. All 36 deterministic tests pass.
+See [acceptance evidence](ACCEPTANCE.md) and [deployment/build identity](docs/evidence/20261017-deployment.md).
 
 ## Run locally (Windows / PowerShell)
 
@@ -37,22 +44,23 @@ controlled AI/provider responses. Windows Codex sandbox restrictions required
 the test runner to execute with local escalation; pytest temporary data stays
 under `.tools/pytest-tmp`. Provider doubles are not live integration proof.
 Local development uses Python directly; Docker Desktop/local builds are skipped.
-The existing Dockerfile is retained for remote packaging if needed. Its build
-and the real platform storage mount are NOT verified.
+GitHub Actions builds the Dockerfile remotely; image and mounted-volume startup
+are verified. The cloud service owns OAuth refresh: keep local provider apps/probes
+stopped while it is running.
 
-## Accounts needed next
+## Connected accounts
 
-- Alternate Clouds: participant reports an account with $5 balance; deployment not tested.
+- Alternate Clouds: deployed and verified, $4.50 service cap within reported $5 credit.
 - Gemini: private key and `gemini-3.8-flash` model availability are verified via
   [read-only discovery](docs/evidence/20261017-gemini-model-access.md).
-  Generation/structured output and actual free quota remain unverified.
-  No Groq account is needed. Model adapter is not implemented yet.
+  Generation and structured output passed actual live runs; future quota is not guaranteed.
+  No Groq account is needed.
 - fastn: OAuth at `https://mcp.fastn.dev` and the linked workspace report active
   `googleGmail` and `github` connections. [Evidence and remaining limits](docs/evidence/20261017-fastn-discovery.md).
   Run `.venv\Scripts\python.exe scripts/connect-fastn-oauth.py` for interactive
   sign-in/tool listing. Private tokens/client registration stay in ignored
   `.data/fastn-oauth.json`; do not commit or share that file. Refresh execution
-  and deployed provisioning remain unverified. The older API-key discovery script
+  and deployed provisioning passed. The older API-key discovery script
   still fails on this OAuth endpoint; it is not the current login route.
 - GitHub origin is already configured. No specification issue will be published.
 

@@ -4,8 +4,8 @@
 
 BugProof's MVP scope is approved. The user explicitly resumed implementation on
 October 17, 2026. Stop and ask about material ambiguities; tell the user whenever
-an account must be created. Local workflow, real fastn/model operations and 35 tests are verified;
-Alternate Clouds deployment and host restart remain unverified. Retain fastn
+an account must be created. Workflow, real fastn/model operations, 36 tests,
+Alternate Clouds deployment and hosted container restart are verified. Retain fastn
 MCP centrally while its event requirement remains unclear.
 
 For exact behavior or scope changes, read `docs/specs/bugproof.md` (implementation
@@ -68,6 +68,8 @@ unpublished as an issue. Keep it in the repository unless directly instructed ot
 ## Live integration handoff
 
 - Read `docs/evidence/20261017-workflow.md` before live provider/recovery work.
+- Read `docs/evidence/20261017-deployment.md` for the live URL, image identity,
+  storage/restart proof and limits; `docs/demo-runbook.md` for the participant handoff.
 - Use `scripts/live-smoke.py --help` for opted-in API rehearsal; seed sends are
   explicit via `scripts/seed-demo.py --allow-live`. Destinations stay controlled.
 - Keep one active OAuth writer. Stop local app/probes before exporting the latest
